@@ -2,9 +2,78 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: karla, sans-serif;
 }
 
 html,
 body {
     height: 100%;
+}
+
+/* -------------------------------------------------- */
+/* Style des éléments dans la todolist */
+/* -------------------------------------------------- */
+.task-list {
+    padding: 1rem 2rem;
+}
+
+.task-list article {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem auto;
+    background-color: #8E8E8E;
+    border-radius: 2rem;
+    color: #FFF;
+}
+
+.task-list article header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-list article header .task-pointer {
+    height: 62px;
+    width: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.task-list article header .task-emoji {
+    height: 62px;
+    width: 62px;
+    background-color: #D9D9D9;
+    border-radius: 31px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.task-list article .task-date {
+    position: absolute;
+    width: 70%;
+    top: -0.5rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: #636363;
+    border-radius: 2em;
+    text-align: center;
+}
+
+.task-list article .task-place {
+    display: inline-block;
+    margin: 0.5rem auto;
+    padding: 0.2rem 0.5rem;
+    border: 1px white solid;
+    border-radius: 1em;
+    font-size: 0.8rem;
+}
+
+.task-list article .task-comment {
+    padding: 1rem 2rem;
+    text-align: center;
 }
