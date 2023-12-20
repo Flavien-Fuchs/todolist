@@ -26,15 +26,9 @@ function removeTask(task, toDo, done){
 let toDoList = [];
 let doneList = [];
 
-const firstTask = new Task("Buy coffee", false, Date(), "😊", "I'm out of coffee, I need to buy it");
-const secondTask = new Task("Do Sports", false, Date(), "😊", "Get back in shape");
-const thirdTask = new Task("Read a book", false, Date(), "😊", "I need to read more");
-
-addTask(firstTask, toDoList);
-addTask(secondTask, toDoList);
-removeTask(secondTask, toDoList, doneList);
-removeTask(firstTask, toDoList, doneList);
-console.log(toDoList);
-console.log(" -------------------- ");
-console.log(doneList);
-console.log(" * * * ");
+let buttonAddTask = document.querySelector(".task-add");
+buttonAddTask.addEventListener("click", function(){
+    const newItem = document.createElement("div");
+    newItem.innerText = "aaaaaaaaaaa";
+    document.body.appendChild(newItem);
+});
