@@ -15,8 +15,38 @@ body {
 /* -------------------------------------------------- */
 /* Style du header */
 /* -------------------------------------------------- */
-header {
+.header {
     padding: 1rem 2rem;
+}
+
+.header h1 {
+    color: #8E8E8E;
+}
+
+.header h1:nth-child(2) {
+    color: #000;
+}
+
+.actual-page {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+.actual-page .button-nav {
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    background-color: #FFF;
+    box-shadow: 0px 5px 0px -2px #000000;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 2rem;
+}
+
+.actual-page .current {
+    background-color: #000;
+    box-shadow: 0px 6px 0px -2px #8E8E8E;
+    color: #FFF;
 }
 
 /* -------------------------------------------------- */
@@ -29,58 +59,111 @@ header {
 
 
 .list-task {
-    position: relative;
     height: 62px;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin: 1rem auto 2rem auto;
-    background-color: #D9D9D9;
+    margin: 1rem auto 0.5rem auto;
+    padding: 0 8%;
+    background-color: #FFF;
+    border: 1px solid #000;
     border-radius: 2rem;
     color: #FFF;
 }
 
-/* -------------------------------------------------- */
-/* Style des éléments dans la todolist */
-/* -------------------------------------------------- */
-.task-list {
-    padding: 1rem 2rem;
+.list-task button {
+    font-size: 1.6em;
+    border: none;
+    background-color: #FFF;
 }
 
-.task-list article {
+.list-add {
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 auto 2rem auto;
+    background-color: #000;
+    border-radius: 2rem;
+    color: #FFF;
+}
+
+.list-add-container {
     position: relative;
     display: flex;
-    flex-direction: column;
-    margin: 2rem auto;
+    height: 62px;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 auto 2rem auto;
     background-color: #8E8E8E;
     border-radius: 2rem;
     color: #FFF;
 }
 
-.task-list article header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.list-add-container input {
+    background-color: #8E8E8E;
+    width: 100%;
+    border: none;
+    color: #FFF;
+    font-size: 1.4rem;
+    text-align: center;
+
+    &::placeholder {
+        color: #FFF;
+    }
 }
 
-.task-list article header .task-pointer {
-    height: 62px;
-    width: 62px;
+.list-add-container button {
+    position: absolute;
+    width: 40%;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: #636363;
+    border-radius: 2em;
+    text-align: center;
+    color: #FFF;
+}
+
+
+
+/* -------------------------------------------------- */
+/* Style des éléments dans la todolist */
+/* -------------------------------------------------- */
+main {
+    padding: 1rem 2rem;
+}
+
+.task-list article.task-template {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem auto;
+    padding: 1rem 0;
+    background-color: #FFF;
+    border: 1px black solid;
+    border-radius: 2rem;
+    color: #000;
+    font-weight: 600;
+}
+
+.task-list article h3 {
+    text-align: center;
+}
+
+.task-list article .task-emoji {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    height: 40px;
+    width: 40px;
+    background-color: #FFF;
+    border: 1px solid #000;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-}
-
-.task-list article header .task-emoji {
-    height: 62px;
-    width: 62px;
-    background-color: #D9D9D9;
-    border-radius: 31px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 
 .task-list article .task-date {
@@ -89,21 +172,42 @@ header {
     top: -0.5rem;
     left: 50%;
     transform: translate(-50%, 0);
-    background-color: #636363;
+    background-color: #FFF;
+    border: 1px black solid;
     border-radius: 2em;
     text-align: center;
 }
 
 .task-list article .task-place {
-    display: inline-block;
     margin: 0.5rem auto;
     padding: 0.2rem 0.5rem;
-    border: 1px white solid;
+    border: 1px black solid;
     border-radius: 1em;
+}
+
+.task-list article .task-place a {
+    color: #000;
+    text-decoration: none;
     font-size: 0.8rem;
 }
 
 .task-list article .task-comment {
     padding: 1rem 2rem;
     text-align: center;
+}
+
+.task-template .hidden {
+    display: none;
+}
+
+.green {
+    box-shadow: 0px 6px 0px -2px #5BD88D;
+}
+
+.orange {
+    box-shadow: 0px 6px 0px -2px #FFC178;
+}
+
+.red {
+    box-shadow: 0px 6px 0px -2px #F87060;
 }

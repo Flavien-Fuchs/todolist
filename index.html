@@ -9,22 +9,34 @@
 </head>
 
 <body>
-    <header>
+    <header class="header">
         <h1>Hello,</h1>
         <h1>Firstname name</h1>
+        <div class="actual-page">
+            <button class="button-nav">PAST TASKS</button>
+            <button class="button-nav current">CURRENT TASKS</button>
+            <button class="button-nav">PROFILE</button>
+        </div>
     </header>
 
     <section class="list">
         <h2>Task lists</h2>
         <div class="list-task">
-            <button>flch</button>
-            <button>icn</button>
-            <button>icn</button>
-            <button>icn</button>
-            <button>icn</button>
-            <button>icn</button>
-            <button>flch</button>
+            <button>🎱</button>
+            <button>🧠</button>
+            <button>⚽</button>
+            <button>🥪</button>
+            <button>✈️</button>
         </div>
+        <div class="list-add">ADD A NEW LIST</div>
+        <div class="list-add-container">
+            <form>
+                <input type="text" name="new-list-name" id="new-list-name" placeholder="Name your list"
+                    value="Name your List">
+                <button class="new-list-button">ADD LIST</button>
+            </form>
+        </div>
+
     </section>
 
     <main>
@@ -33,34 +45,51 @@
         </section>
         <section class="task-list">
 
-            <article class="task-template">
-                <header class="task-header">
-                    <div class="task-pointer">
-                        <form action="#"><input type="radio" name="radio" /></form>
-                    </div>
-                    <div class="task-title">
-                        <h3>Plan the trip</h3>
-                    </div>
-                    <div class="task-emoji">😅</div>
-                </header>
-                <div class="task-date">Barcelona - 13/12 to 13/01</div>
-            </article>
 
-            <article class="task-template">
-                <header class="task-header">
-                    <div class="task-pointer">
-                        <form action="#"><input type="radio" name="radio" /></form>
-                    </div>
-                    <div class="task-title">
-                        <h3>Plan the trip</h3>
-                    </div>
-                    <div class="task-emoji">😅</div>
-                </header>
-                <div class="task-date">Barcelona - 13/12 to 13/01</div>
-                <div class="task-place">La Flore Bar - 21 Rue Tiquetonne</div>
+
+            <article class="task-template green">
+
+                <div class="task-title">
+                    <h3>Plan the trip</h3>
+                </div>
+                <div class="task-emoji">😅</div>
+                <div class="task-date green">Barcelona - 13/12 to 13/01</div>
+                <div class="task-place"><a href="https://www.google.com/search?q=La Flore Bar - 21 Rue Tiquetonne"
+                        target="_blank">La Flore Bar - 21 Rue Tiquetonne</a></div>
                 <div class="task-comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas distinctio
                     debitis, repellendus doloribus sit nulla obcaecati sunt aliquid dolores perferendis minima eligendi
-                    culpa suscipit ad quia consequuntur nihil, placeat fugiat.</div>
+                    culpa suscipit ad quia consequuntur nihil, placeat fugiat.
+                </div>
+            </article>
+
+            <article class="task-template green">
+                <div class="task-title">
+                    <h3>Plan the trip</h3>
+                </div>
+                <div class="task-emoji">😅</div>
+                <span class="task-date green">Barcelona - 13/12 to 13/01</span>
+                <div class="task-place hidden"></div>
+                <div class="task-comment hidden"></div>
+            </article>
+
+            <article class="task-template orange">
+                <div class="task-title">
+                    <h3>Plan the trip</h3>
+                </div>
+                <div class="task-emoji">😅</div>
+                <span class="task-date hidden"></span>
+                <div class="task-place hidden"></div>
+                <div class="task-comment hidden"></div>
+            </article>
+
+            <article class="task-template red">
+                <div class="task-title">
+                    <h3>Plan the trip</h3>
+                </div>
+                <div class="task-emoji">😅</div>
+                <span class="task-date hidden"></span>
+                <div class="task-place hidden"></div>
+                <div class="task-comment hidden"></div>
             </article>
 
             <button class="tast-add">Add a task</button>
