@@ -27,8 +27,10 @@ let toDoList = [];
 let doneList = [];
 
 let buttonAddTask = document.querySelector(".task-add");
+let sectionToAdd = document.querySelector("section.task-list");
+
 buttonAddTask.addEventListener("click", function(){
     const newItem = document.createElement("div");
     newItem.innerText = "aaaaaaaaaaa";
-    document.body.appendChild(newItem);
+    sectionToAdd.appendChild(newItem);
 });
