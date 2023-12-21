@@ -103,6 +103,7 @@ body {
         color: #FFF;
     }
 
+
     .list-add-container input {
         background-color: #8E8E8E;
         width: 100%;
@@ -116,9 +117,9 @@ body {
         }
 
         &:focus {
-            outline: none
+            outline: none;
         }
-    }
+
 
 
     .list-add-container button {
@@ -233,3 +234,4 @@ body {
     }
 
 }
+
