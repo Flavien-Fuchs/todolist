@@ -111,6 +111,10 @@ body {
     &::placeholder {
         color: #FFF;
     }
+
+    &:focus {
+        outline: none
+    }
 }
 
 .list-add-container button {
