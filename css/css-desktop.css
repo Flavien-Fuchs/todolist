@@ -13,7 +13,7 @@ body {
 }
 
 
-@media screen and (max-width: 780px) {
+@media screen and (min-width: 781px) {
 
     /* -------------------------------------------------- */
     /* Style du header */
@@ -59,6 +59,7 @@ body {
     .list {
         padding: 1rem 2rem;
     }
+
 
     .list-task {
         height: 62px;
@@ -140,6 +141,17 @@ body {
     /* -------------------------------------------------- */
     main {
         padding: 1rem 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .doToday {
+        width: 100%;
+    }
+
+    main .task-list {
+        width: 350px;
     }
 
     .task-add {
