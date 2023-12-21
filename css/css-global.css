@@ -114,7 +114,7 @@ body {
     }
 
     &:focus {
-        outline: none
+        outline: none;
     }
 }
 
