@@ -13,7 +13,7 @@ body {
 }
 
 
-@media screen and (max-width: 780px) {
+@media screen and (min-width: 781px) {
 
     /* -------------------------------------------------- */
     /* Style du header */
@@ -60,6 +60,7 @@ body {
         padding: 1rem 2rem;
     }
 
+
     .list-task {
         height: 62px;
         display: flex;
@@ -103,7 +104,6 @@ body {
         color: #FFF;
     }
 
-
     .list-add-container input {
         background-color: #8E8E8E;
         width: 100%;
@@ -117,9 +117,9 @@ body {
         }
 
         &:focus {
-            outline: none;
+            outline: none
         }
-
+    }
 
 
     .list-add-container button {
@@ -141,6 +141,17 @@ body {
     /* -------------------------------------------------- */
     main {
         padding: 1rem 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .doToday {
+        width: 100%;
+    }
+
+    main .task-list {
+        width: 350px;
     }
 
     .task-add {
@@ -234,4 +245,3 @@ body {
     }
 
 }
-
