@@ -26,11 +26,48 @@ function removeTask(task, toDo, done){
 let toDoList = [];
 let doneList = [];
 
+let i = 1;
+
 let buttonAddTask = document.querySelector(".task-add");
 let sectionToAdd = document.querySelector("section.task-list");
 
 buttonAddTask.addEventListener("click", function(){
-    const newItem = document.createElement("div");
-    newItem.innerText = "aaaaaaaaaaa";
-    sectionToAdd.appendChild(newItem);
+    const newItemArticle = document.createElement("article");
+    newItemArticle.classList.add("task-template");
+    newItemArticle.classList.add("red");
+    sectionToAdd.appendChild(newItemArticle);
+    newItemArticle.addEventListener("click", function(){
+        setTimeout(function(){
+            newItemArticle.remove();
+        }, 500);
+    });
+
+    const newTitleDiv = document.createElement("div");
+    newTitleDiv.classList.add("task-title");
+    newItemArticle.appendChild(newTitleDiv);
+
+    const newTitle = document.createElement("h3");
+    newTitle.innerText = i;
+    newTitleDiv.appendChild(newTitle);
+    i += 1;
+
+    const emojiDiv = document.createElement("div");
+    emojiDiv.classList.add("task-emoji");
+    emojiDiv.innerText = "😅";
+    newItemArticle.appendChild(emojiDiv);
+
+    const newDate = document.createElement("span");
+    newDate.classList.add("task-date");
+    newDate.classList.add("hidden");
+    newItemArticle.appendChild(newDate);
+
+    const newPlace = document.createElement("div");
+    newPlace.classList.add("task-place");
+    newPlace.classList.add("hidden");
+    newItemArticle.appendChild(newPlace);
+
+    const newComment = document.createElement("div");
+    newComment.classList.add("task-comment");
+    newComment.classList.add("hidden");
+    newItemArticle.appendChild(newComment);
 });
