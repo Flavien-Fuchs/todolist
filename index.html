@@ -50,15 +50,15 @@
             <div class="set-new-task">
                 <form>
                     <input type="text" name="add-task-name" id="add-task-name" placeholder="New Task" required />
-                    <input type="text" name="add-task-name" id="add-task-name" required />
+                    <!-- <input type="text" name="add-task-name" id="add-task-name" required /> -->
                     <textarea id="add-task-comment" name="story" placeholder="Describe your task"></textarea>
                     <select name="add-task-emoji" id="add-task-emoji">
-                        <option value="green"></option>
+                        <option value="green">😊</option>
                         <option value="orange">😅</option>
-                        <option value="red">☺️</option>
+                        <option value="red">🫠</option>
                     </select>
-                    <input type="text" name="add-task-date" id="add-task-date" />
-                    <input type="text" name="add-task-place" id="add-task-place" />
+                    <input type="text" name="add-task-date" id="add-task-date" placeholder="Deadline" />
+                    <!-- <input type="text" name="add-task-place" id="add-task-place" /> -->
                     <select name="add-task-list" id="add-task-list">
                         <option value="1">🎱</option>
                         <option value="2">🧠</option>
@@ -70,9 +70,9 @@
                 </form>
             </div>
 
-
+            <!--
             <article class="task-template green">
-
+                
                 <div class="task-title">
                     <h3>Plan the trip</h3>
                 </div>
@@ -115,11 +115,15 @@
                 <div class="task-place hidden"></div>
                 <div class="task-comment hidden"></div>
             </article>
-
+            
+            <button class="task-add">Add a task</button> -->
         </section>
 
     </main>
-    <script src="js/tasksfonction.js" type="module"></script>
+
+<script src="script.js"></script>
+<script src="js/tasksfonction.js" type="module"></script>
+
 </body>
 
 </html>
