@@ -11,30 +11,109 @@ class Task {
     displayInfo() {
         console.log(`${this.name}, ${this.done}, ${this.priority}`);
     }
-}
+};
 
-function addTask(task, list){
-    list.push(task)
-}
-
-function removeTask(task, toDo, done){
-    done.push(task)
-    indexToRemove = toDo.indexOf(task);
-    toDo.splice(indexToRemove, 1);
-}
+let buttonAddTask = document.querySelector(".task-add");
+let sectionToAdd = document.querySelector("section.task-list");
 
 let toDoList = [];
 let doneList = [];
 
-const firstTask = new Task("Buy coffee", false, Date(), "😊", "I'm out of coffee, I need to buy it");
-const secondTask = new Task("Do Sports", false, Date(), "😊", "Get back in shape");
-const thirdTask = new Task("Read a book", false, Date(), "😊", "I need to read more");
+buttonAddTask.addEventListener("click", function(){
+    taskToAdd = getInput();
+    toDoList.push(taskToAdd);
 
-addTask(firstTask, toDoList);
-addTask(secondTask, toDoList);
-removeTask(secondTask, toDoList, doneList);
-removeTask(firstTask, toDoList, doneList);
-console.log(toDoList);
-console.log(" -------------------- ");
-console.log(doneList);
-console.log(" * * * ");
+    const newItemArticle = document.createElement("article");
+    newItemArticle.classList.add("task-template");
+    if (taskToAdd.priority === "😅"){
+        newItemArticle.classList.add("orange");
+    } else if (taskToAdd.priority === "😊"){
+        newItemArticle.classList.add("green");
+    } else {
+        newItemArticle.classList.add("red");
+    };
+    sectionToAdd.appendChild(newItemArticle);
+    newItemArticle.addEventListener("click", function(){
+        setTimeout(function(){
+            newItemArticle.remove();
+            sendToDone(newTitle.innerText);
+        }, 500);
+    });
+
+    const newTitleDiv = document.createElement("div");
+    newTitleDiv.classList.add("task-title");
+    newItemArticle.appendChild(newTitleDiv);
+
+    const newTitle = document.createElement("h3");
+    newTitle.innerText = taskToAdd.name;
+    newTitleDiv.appendChild(newTitle);
+
+    const emojiDiv = document.createElement("div");
+    emojiDiv.classList.add("task-emoji");
+    emojiDiv.innerText = taskToAdd.priority;
+    newItemArticle.appendChild(emojiDiv);
+
+    const newDate = document.createElement("span");
+    newDate.classList.add("task-date");
+    if (taskToAdd.deadLine) {
+        newDate.innerText = taskToAdd.deadLine;
+    } else {
+        newDate.classList.add("hidden");
+    };
+    newItemArticle.appendChild(newDate);
+
+    const newPlace = document.createElement("div");
+    newPlace.classList.add("task-place");
+    newPlace.classList.add("hidden");
+    newItemArticle.appendChild(newPlace);
+
+    const newComment = document.createElement("div");
+    newComment.classList.add("task-comment");
+    if (taskToAdd.deadLine) {
+        newComment.innerText = taskToAdd.description;
+    } else {
+        newComment.classList.add("hidden");
+    };
+    newItemArticle.appendChild(newComment);
+});
+
+function sendToDone(nameOfTask) {
+    let indexToRemove = toDoList.findIndex(function(obj) {
+    return obj.name === nameOfTask;
+    });
+    if (indexToRemove !== -1) {
+        doneList.push(toDoList[indexToRemove]);
+        toDoList.splice(indexToRemove, 1);
+        console.log(toDoList);
+        console.log(doneList);
+    };
+};
+
+function getInput(){
+
+    let taskField = document.getElementById("add-task-name");
+    let deadlineField = document.getElementById("add-task-date");
+    let describeField = document.getElementById("add-task-comment");
+    let emojiSelector = document.getElementById("add-task-emoji");
+    let categorySelector = document.getElementById("add-task-list");
+
+    const emojiArray = [ "😊", "😅", "🫠" ];
+    let emojiValue = "";
+    if (emojiSelector.value === "green") {
+        emojiValue = emojiArray[0];
+    } else if (emojiSelector.value === "orange") {
+        emojiValue = emojiArray[1];
+    } else {
+        emojiValue = emojiArray[2];
+    };
+
+    let taskToAdd = {
+        name: taskField.value,
+        done: false,
+        deadLine: deadlineField.value,
+        priority: emojiValue,
+        description: describeField.value,
+        category: categorySelector.value };
+
+    return taskToAdd;
+};
