@@ -61,7 +61,7 @@ body {
     }
 
 
-    .list-task {
+    #list-task {
         height: 62px;
         display: flex;
         align-items: center;
@@ -74,7 +74,7 @@ body {
         color: #FFF;
     }
 
-    .list-task button {
+    #list-task button {
         font-size: 1.6em;
         border: none;
         background-color: #FFF;

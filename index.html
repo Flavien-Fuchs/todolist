@@ -22,7 +22,8 @@
 
     <section class="list">
         <h2>Task lists</h2>
-        <div class="list-task">
+        <div id="list-task">
+            <!-- <button data-type="all" id="btn-all">ALL</button> -->
             <button data-type="billard" id="btn-billard">🎱</button>
             <button data-type="learn" id="btn-learn">🧠</button>  
             <button data-type="sport" id="btn-sport">⚽</button>
@@ -60,16 +61,15 @@
                     <input type="text" name="add-task-date" id="add-task-date" placeholder="Deadline" />
                     <!-- <input type="text" name="add-task-place" id="add-task-place" /> -->
                     <select name="add-task-list" id="add-task-list">
-                        <option value="1">🎱</option>
-                        <option value="2">🧠</option>
-                        <option value="3">⚽</option>
-                        <option value="4">🥪</option>
-                        <option value="5">✈️</option>
+                        <option value="billard">🎱</option>
+                        <option value="learn">🧠</option>
+                        <option value="sport">⚽</option>
+                        <option value="food">🥪</option>
+                        <option value="travel">✈️</option>
                     </select>
                     <input type="submit" value="CONFIRM NEW TASK" id="add-task-confirm">
                 </form>
             </div>
-
             <!--
             <article class="task-template green">
                 
