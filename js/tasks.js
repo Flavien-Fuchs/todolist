@@ -1,6 +1,6 @@
 export const tasks = [
     {
-      name: "read the book",
+      name: "read l'alchimiste de Paolo Coelho",
       done: true,
       deadline: Date(),
       priority: "😊",
@@ -74,6 +74,14 @@ export const tasks = [
         priority: "😅",
         description: "C'est mon plus grand rêve",
         listname: "travel",
+    },
+    {
+        name: "Go to billard",
+        done: true,
+        deadline: Date(),
+        priority: "😅",
+        description: "je dois accompagner mon poto céléstin même si je déteste ça",
+        listname: "billard",
     },
     
   ];
