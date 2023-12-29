@@ -11,8 +11,10 @@
 
 <body>
     <header class="header">
-        <h1>Hello,</h1>
-        <h1>Firstname name</h1>
+        <div>
+            <h1>Hello,</h1>
+            <h1>Firstname name</h1>
+        </div>
         <div class="actual-page">
             <button class="button-nav">PAST TASKS</button>
             <button class="button-nav current">CURRENT TASKS</button>
@@ -24,105 +26,119 @@
         <h2>Task lists</h2>
         <div class="list-task">
             <button data-type="billard" id="btn-billard">🎱</button>
-            <button data-type="learn" id="btn-learn">🧠</button>  
+            <button data-type="learn" id="btn-learn">🧠</button>
             <button data-type="sport" id="btn-sport">⚽</button>
             <button data-type="food" id="btn-food">🥪</button>
-            <button data-type="travel" id="btn-travel">✈️</button> 
+            <button data-type="travel" id="btn-travel">✈️</button>
         </div>
-        <button class="list-add">ADD A NEW LIST</button>
         <div class="list-add-container">
-            <form>
-                <input type="text" name="new-list-name" id="new-list-name" placeholder="Name your list">
-                <button class="new-list-button">ADD LIST</button>
-            </form>
+            <button class="list-add">ADD A NEW LIST</button>
+            <div class="list-add-button hidden">
+                <form>
+                    <input type="text" name="new-list-name" id="new-list-name" placeholder="Name your list">
+                    <button class="new-list-button">ADD LIST</button>
+                </form>
+            </div>
         </div>
 
     </section>
-
     <main>
-        <section class="doToday">
-            <h1>What to do today</h1>
-        </section>
-        <section class="task-list">
+        <div class="list-container">
+            <section class="doToday">
+                <h1>🎱 Loisirs</h1>
+            </section>
+            <section class="task-list">
 
-            <button class="task-add">ADD A NEW TASK</button>
+                <button class="task-add">ADD A NEW TASK</button>
 
-            <div class="set-new-task">
-                <form>
-                    <input type="text" name="add-task-name" id="add-task-name" placeholder="New Task" required />
-                    <!-- <input type="text" name="add-task-name" id="add-task-name" required /> -->
-                    <textarea id="add-task-comment" name="story" placeholder="Describe your task"></textarea>
-                    <select name="add-task-emoji" id="add-task-emoji">
-                        <option value="green">😊</option>
-                        <option value="orange">😅</option>
-                        <option value="red">🫠</option>
-                    </select>
-                    <input type="text" name="add-task-date" id="add-task-date" placeholder="Deadline" />
-                    <!-- <input type="text" name="add-task-place" id="add-task-place" /> -->
-                    <select name="add-task-list" id="add-task-list">
-                        <option value="1">🎱</option>
-                        <option value="2">🧠</option>
-                        <option value="3">⚽</option>
-                        <option value="4">🥪</option>
-                        <option value="5">✈️</option>
-                    </select>
+
+                <form id="form-new-task" class="hidden">
+                    <div class="set-new-task">
+                        <input type="text" name="add-task-name" id="add-task-name" placeholder="New Task" required />
+                        <hr />
+                        <textarea id="add-task-comment" name="story" placeholder="Describe your task"></textarea>
+                        <div class="add-task-emoji">
+                            <input type="radio" id="radio1" name="add-task-emoji" value="😊" checked />
+                            <label for="radio1">😊</label>
+                            <input type="radio" id="radio2" name="add-task-emoji" value="😅" />
+                            <label for="radio2">😅</label>
+                            <input type="radio" id="radio3" name="add-task-emoji" value="🫠" />
+                            <label for="radio3">🫠</label>
+                        </div>
+                        <input type="text" name="add-task-date" id="add-task-date" placeholder="SET A DATE" />
+                        <input type="text" name="add-task-place" id="add-task-place" placeholder="SET A PLACE" />
+                    </div>
+                    <div class="add-task-list">
+                        <input type="radio" id="radio-list1" name="add-task-list" value="🎱" checked />
+                        <label for="radio-list1">🎱</label>
+                        <input type="radio" id="radio-list2" name="add-task-list" value="🧠" />
+                        <label for="radio-list2">🧠</label>
+                        <input type="radio" id="radio-list3" name="add-task-list" value="⚽" />
+                        <label for="radio-list3">⚽</label>
+                        <input type="radio" id="radio-list4" name="add-task-list" value="🥪" />
+                        <label for="radio-list4">🥪</label>
+                        <input type="radio" id="radio-list5" name="add-task-list" value="✈️" />
+                        <label for="radio-list5">✈️</label>
+                    </div>
                     <input type="submit" value="CONFIRM NEW TASK" id="add-task-confirm">
                 </form>
-            </div>
 
-            <!--
-            <article class="task-template green">
-                
-                <div class="task-title">
-                    <h3>Plan the trip</h3>
-                </div>
-                <div class="task-emoji">😅</div>
-                <div class="task-date green">Barcelona - 13/12 to 13/01</div>
-                <div class="task-place"><a href="https://www.google.com/search?q=La Flore Bar - 21 Rue Tiquetonne"
-                        target="_blank">La Flore Bar - 21 Rue Tiquetonne</a></div>
-                <div class="task-comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas distinctio
-                    debitis, repellendus doloribus sit nulla obcaecati sunt aliquid dolores perferendis minima eligendi
-                    culpa suscipit ad quia consequuntur nihil, placeat fugiat.
-                </div>
-            </article>
 
-            <article class="task-template green">
-                <div class="task-title">
-                    <h3>Plan the trip</h3>
-                </div>
-                <div class="task-emoji">😅</div>
-                <span class="task-date green">Barcelona - 13/12 to 13/01</span>
-                <div class="task-place hidden"></div>
-                <div class="task-comment hidden"></div>
-            </article>
 
-            <article class="task-template orange">
-                <div class="task-title">
-                    <h3>Plan the trip</h3>
-                </div>
-                <div class="task-emoji">😅</div>
-                <span class="task-date hidden"></span>
-                <div class="task-place hidden"></div>
-                <div class="task-comment hidden"></div>
-            </article>
+                <article class="task-template green">
 
-            <article class="task-template red">
-                <div class="task-title">
-                    <h3>Plan the trip</h3>
-                </div>
-                <div class="task-emoji">😅</div>
-                <span class="task-date hidden"></span>
-                <div class="task-place hidden"></div>
-                <div class="task-comment hidden"></div>
-            </article>
-            
-            <button class="task-add">Add a task</button> -->
-        </section>
+                    <div class="task-title">
+                        <h3>Plan the trip</h3>
+                    </div>
+                    <div class="task-emoji">😅</div>
+                    <div class="task-date green">Barcelona - 13/12 to 13/01</div>
+                    <div class="task-place"><a href="https://www.google.com/search?q=La Flore Bar - 21 Rue Tiquetonne"
+                            target="_blank">La Flore Bar - 21 Rue Tiquetonne</a></div>
+                    <div class="task-comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
+                        distinctio
+                        debitis, repellendus doloribus sit nulla obcaecati sunt aliquid dolores perferendis minima
+                        eligendi
+                        culpa suscipit ad quia consequuntur nihil, placeat fugiat.
+                    </div>
+                </article>
 
+                <article class="task-template green">
+                    <div class="task-title">
+                        <h3>Plan the trip</h3>
+                    </div>
+                    <div class="task-emoji">😅</div>
+                    <span class="task-date green">Barcelona - 13/12 to 13/01</span>
+                    <div class="task-place hidden"></div>
+                    <div class="task-comment hidden"></div>
+                </article>
+
+                <article class="task-template orange">
+                    <div class="task-title">
+                        <h3>Plan the trip</h3>
+                    </div>
+                    <div class="task-emoji">😅</div>
+                    <span class="task-date hidden"></span>
+                    <div class="task-place hidden"></div>
+                    <div class="task-comment hidden"></div>
+                </article>
+
+                <article class="task-template red">
+                    <div class="task-title">
+                        <h3>Plan the trip</h3>
+                    </div>
+                    <div class="task-emoji">😅</div>
+                    <span class="task-date hidden"></span>
+                    <div class="task-place hidden"></div>
+                    <div class="task-comment hidden"></div>
+                </article>
+
+                <button class="task-add">Add a task</button>
+            </section>
+        </div>
     </main>
 
-<script src="script.js"></script>
-<script src="js/tasksfonction.js" type="module"></script>
+    <script src="script.js"></script>
+    <script src="js/tasksfonction.js" type="module"></script>
 
 </body>
 
