@@ -23,8 +23,9 @@ buttonAddTask.addEventListener("click", function(){
     taskToAdd = getInput();
     toDoList.push(taskToAdd);
 
+    let categorySelector = document.getElementById("add-task-list");
     const newItemArticle = document.createElement("article");
-    newItemArticle.classList.add("task-template");
+    newItemArticle.classList.add("task-template", categorySelector.value);
     if (taskToAdd.priority === "😅"){
         newItemArticle.classList.add("orange");
     } else if (taskToAdd.priority === "😊"){
@@ -117,3 +118,67 @@ function getInput(){
 
     return taskToAdd;
 };
+
+const listbutton = document.querySelector(".list-task");
+listbutton.addEventListener("click", (event) => {
+    const button = event.target;
+    
+    if (button.tagName === 'BUTTON') {
+        const tasklist = button.dataset.type;
+
+        // Vérifie si le bouton est déjà actif
+        const isActive = button.classList.contains("active");
+
+        // Si le bouton est actif, retire la classe "active" et filtre par les types restants
+        if (isActive) {
+            button.classList.remove("active");
+        } else {
+            // Si le bouton n'est pas actif, ajoute la classe "active" et filtre par les types existants
+            button.classList.add("active");
+        }
+
+        // Récupère tous les boutons actifs
+        const activeButtons = document.querySelectorAll(".list-task button.active");
+        
+        // Si aucun bouton n'est actif, affiche tous les éléments
+        if (activeButtons.length === 0) {
+            const articles = document.querySelectorAll(".task-template");
+            articles.forEach((article) => {
+                article.style.display = "flex";
+            });
+        } else {
+            // Si des boutons sont actifs, filtre par les types des boutons actifs
+            const selectedTypes = Array.from(activeButtons).map((activeButton) => activeButton.dataset.type);
+            filterByType(selectedTypes);
+        }
+    }
+});
+
+function filterByType(selectedTypes) {
+    const articles = document.querySelectorAll(".task-template");
+    articles.forEach((article) => {
+        const articleType = article.classList[1]; // La classe correspond au type de la tâche
+        if (selectedTypes.includes(articleType)) {
+            article.style.display = "flex";
+        } else {
+            article.style.display = "none";
+        }
+    });
+}
+
+// function showPastTasks() {
+//     // Efface le contenu actuel de la section "doToday"
+//     const doTodaySection = document.querySelector(".doToday");
+//     const isActive = pastTaskButton.classList.contains("active");
+//     if (!isActive){
+//         pastTaskButton.classList.add("active");
+//         doTodaySection.innerHTML = "";
+//     } else {
+//         pastTaskButton.classList.remove("active");
+//     }
+    
+    
+// }
+
+// const pastTaskButton = document.querySelector(".actual-page button.past-task")
+// pastTaskButton.addEventListener("click", showPastTasks)
