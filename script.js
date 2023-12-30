@@ -1,119 +1,142 @@
-class Task {
-
-    constructor(name, done, deadLine, priority, description) {
-      this.name = name;
-      this.done = done;
-      this.deadLine = deadLine;
-      this.priority = priority;
-      this.description = description;
-    }
-
-    displayInfo() {
-        console.log(`${this.name}, ${this.done}, ${this.priority}`);
-    }
-};
-
 let buttonAddTask = document.querySelector(".task-add");
 let sectionToAdd = document.querySelector("section.task-list");
 
 let toDoList = [];
 let doneList = [];
 
-buttonAddTask.addEventListener("click", function(){
-    taskToAdd = getInput();
-    toDoList.push(taskToAdd);
+buttonAddTask.addEventListener("click", function () {
+  taskToAdd = getInput();
+  toDoList.push(taskToAdd);
 
-    const newItemArticle = document.createElement("article");
-    newItemArticle.classList.add("task-template");
-    if (taskToAdd.priority === "😅"){
-        newItemArticle.classList.add("orange");
-    } else if (taskToAdd.priority === "😊"){
-        newItemArticle.classList.add("green");
-    } else {
-        newItemArticle.classList.add("red");
-    };
-    sectionToAdd.appendChild(newItemArticle);
-    newItemArticle.addEventListener("click", function(){
-        setTimeout(function(){
-            newItemArticle.remove();
-            sendToDone(newTitle.innerText);
-        }, 500);
-    });
+  // Here and till the end we create a new element
+  const newItemArticle = document.createElement("article");
+  newItemArticle.classList.add("task-template");
+  if (taskToAdd.priority === "😅") {
+    newItemArticle.classList.add("orange");
+  } else if (taskToAdd.priority === "😊") {
+    newItemArticle.classList.add("green");
+  } else {
+    newItemArticle.classList.add("red");
+  }
 
-    const newTitleDiv = document.createElement("div");
-    newTitleDiv.classList.add("task-title");
-    newItemArticle.appendChild(newTitleDiv);
+  newItemArticle.addEventListener("click", function () {
+    setTimeout(function () {
+      newItemArticle.remove();
+      sendToDone(newTitle.innerText);
+    }, 500);
+  });
 
-    const newTitle = document.createElement("h3");
-    newTitle.innerText = taskToAdd.name;
-    newTitleDiv.appendChild(newTitle);
+  const newTitleDiv = document.createElement("div");
+  newTitleDiv.classList.add("task-title");
+  newItemArticle.appendChild(newTitleDiv);
 
-    const emojiDiv = document.createElement("div");
-    emojiDiv.classList.add("task-emoji");
-    emojiDiv.innerText = taskToAdd.priority;
-    newItemArticle.appendChild(emojiDiv);
+  const newTitle = document.createElement("h3");
+  newTitle.innerText = taskToAdd.name;
+  newTitleDiv.appendChild(newTitle);
 
-    const newDate = document.createElement("span");
-    newDate.classList.add("task-date");
-    if (taskToAdd.deadLine) {
-        newDate.innerText = taskToAdd.deadLine;
-    } else {
-        newDate.classList.add("hidden");
-    };
-    newItemArticle.appendChild(newDate);
+  const emojiDiv = document.createElement("div");
+  emojiDiv.classList.add("task-emoji");
+  emojiDiv.innerText = taskToAdd.priority;
+  newItemArticle.appendChild(emojiDiv);
 
-    const newPlace = document.createElement("div");
-    newPlace.classList.add("task-place");
-    newPlace.classList.add("hidden");
-    newItemArticle.appendChild(newPlace);
+  const newDate = document.createElement("span");
+  newDate.classList.add("task-date");
+  if (taskToAdd.deadLine) {
+    newDate.innerText = taskToAdd.deadLine;
+  } else {
+    newDate.classList.add("hidden");
+  }
+  newItemArticle.appendChild(newDate);
 
-    const newComment = document.createElement("div");
-    newComment.classList.add("task-comment");
-    if (taskToAdd.deadLine) {
-        newComment.innerText = taskToAdd.description;
-    } else {
-        newComment.classList.add("hidden");
-    };
-    newItemArticle.appendChild(newComment);
+  const newPlace = document.createElement("div");
+  newPlace.classList.add("task-place");
+  newPlace.classList.add("hidden");
+  newItemArticle.appendChild(newPlace);
+
+  const newComment = document.createElement("div");
+  newComment.classList.add("task-comment");
+  if (taskToAdd.deadLine) {
+    newComment.innerText = taskToAdd.description;
+  } else {
+    newComment.classList.add("hidden");
+  }
+  newItemArticle.appendChild(newComment);
+
+  if (sectionToAdd.hasChildNodes) {
+    const first = sectionToAdd.children[0];
+    sectionToAdd.insertBefore(newItemArticle, first);
+    return;
+  }
+
+  sectionToAdd.appendChild(newItemArticle);
 });
 
 function sendToDone(nameOfTask) {
-    let indexToRemove = toDoList.findIndex(function(obj) {
+  let indexToRemove = toDoList.findIndex(function (obj) {
     return obj.name === nameOfTask;
-    });
-    if (indexToRemove !== -1) {
-        doneList.push(toDoList[indexToRemove]);
-        toDoList.splice(indexToRemove, 1);
-        console.log(toDoList);
-        console.log(doneList);
-    };
-};
+  });
+  if (indexToRemove !== -1) {
+    doneList.push(toDoList[indexToRemove]);
+    toDoList.splice(indexToRemove, 1);
+    console.log(toDoList);
+    console.log(doneList);
+  }
+}
 
-function getInput(){
+function getInput() {
+  let taskToAdd = {
+    name: "",
+    done: false,
+    deadLine: "",
+    priority: "",
+    description: "",
+    category: "",
+  };
 
-    let taskField = document.getElementById("add-task-name");
-    let deadlineField = document.getElementById("add-task-date");
-    let describeField = document.getElementById("add-task-comment");
-    let emojiSelector = document.getElementById("add-task-emoji");
-    let categorySelector = document.getElementById("add-task-list");
+  let taskField = document.getElementById("add-task-name");
+  if (taskField.value === "") {
+    taskToAdd.name = "Unnamed task";
+  } else {
+    taskToAdd.name = taskField.value;
+  }
 
-    const emojiArray = [ "😊", "😅", "🫠" ];
-    let emojiValue = "";
-    if (emojiSelector.value === "green") {
-        emojiValue = emojiArray[0];
-    } else if (emojiSelector.value === "orange") {
-        emojiValue = emojiArray[1];
-    } else {
-        emojiValue = emojiArray[2];
-    };
+  let deadlineField = document.getElementById("add-task-date");
+  if (deadlineField.value === "") {
+    taskToAdd.deadLine = "Unknown deadline";
+  } else {
+    taskToAdd.deadLine = deadlineField.value;
+  }
 
-    let taskToAdd = {
-        name: taskField.value,
-        done: false,
-        deadLine: deadlineField.value,
-        priority: emojiValue,
-        description: describeField.value,
-        category: categorySelector.value };
+  let describeField = document.getElementById("add-task-comment");
+  if (describeField.value === "") {
+    taskToAdd.description = "No details given";
+  } else {
+    taskToAdd.description = describeField.value;
+  }
 
-    return taskToAdd;
-};
+  let emojiSelector = document.getElementById("add-task-emoji");
+  console.log(emojiSelector.value);
+  switch (emojiSelector.value) {
+    case "green": {
+      taskToAdd.priority = "😊";
+      break;
+    }
+    case "orange": {
+      taskToAdd.priority = "😅";
+      break;
+    }
+    case "red": {
+      taskToAdd.priority = "🫠";
+      break;
+    }
+    default: {
+      taskToAdd.priority = "😊";
+    }
+  }
+  console.log(taskToAdd.priority);
+
+  let categorySelector = document.getElementById("add-task-list");
+  taskToAdd.category = categorySelector.value;
+
+  return taskToAdd;
+}
