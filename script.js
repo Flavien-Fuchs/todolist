@@ -1,18 +1,3 @@
-class Task {
-
-  constructor(name, done, deadLine, priority, description) {
-    this.name = name;
-    this.done = done;
-    this.deadLine = deadLine;
-    this.priority = priority;
-    this.description = description;
-  }
-
-  displayInfo() {
-      console.log(`${this.name}, ${this.done}, ${this.priority}`);
-  }
-};
-
 let buttonAddTask = document.querySelector(".task-add");
 let sectionToAdd = document.querySelector("section.task-list");
 
@@ -26,19 +11,19 @@ function createArticle() {
   const categorySelector = document.getElementById("add-task-list");
   const newItemArticle = document.createElement("article");
   newItemArticle.classList.add("task-template", categorySelector.value);
-  if (taskToAdd.priority === "😅"){
-      newItemArticle.classList.add("orange");
-  } else if (taskToAdd.priority === "😊"){
-      newItemArticle.classList.add("green");
+  if (taskToAdd.priority === "😅") {
+    newItemArticle.classList.add("orange");
+  } else if (taskToAdd.priority === "😊") {
+    newItemArticle.classList.add("green");
   } else {
-      newItemArticle.classList.add("red");
-  };
-  sectionToAdd.appendChild(newItemArticle);
-  newItemArticle.addEventListener("click", function(){
-      setTimeout(function(){
-          newItemArticle.remove();
-          sendToDone(newTitle.innerText);
-      }, 500);
+    newItemArticle.classList.add("red");
+  }
+
+  newItemArticle.addEventListener("click", function () {
+    setTimeout(function () {
+      newItemArticle.remove();
+      sendToDone(newTitle.innerText);
+    }, 500);
   });
 
   const newTitleDiv = document.createElement("div");
@@ -57,10 +42,10 @@ function createArticle() {
   const newDate = document.createElement("span");
   newDate.classList.add("task-date");
   if (taskToAdd.deadLine) {
-      newDate.innerText = taskToAdd.deadLine;
+    newDate.innerText = taskToAdd.deadLine;
   } else {
-      newDate.classList.add("hidden");
-  };
+    newDate.classList.add("hidden");
+  }
   newItemArticle.appendChild(newDate);
 
   const newPlace = document.createElement("div");
@@ -71,10 +56,10 @@ function createArticle() {
   const newComment = document.createElement("div");
   newComment.classList.add("task-comment");
   if (taskToAdd.deadLine) {
-      newComment.innerText = taskToAdd.description;
+    newComment.innerText = taskToAdd.description;
   } else {
-      newComment.classList.add("hidden");
-  };
+    newComment.classList.add("hidden");
+  }
   newItemArticle.appendChild(newComment);
 
   newItemArticle.addEventListener("click", function () {
@@ -84,127 +69,135 @@ function createArticle() {
     }, 500);
   });
   DragAndDropModule.init();
+
+  if (sectionToAdd.hasChildNodes) {
+    const first = sectionToAdd.children[0];
+    sectionToAdd.insertBefore(newItemArticle, first);
+    return;
+  }
+
+  sectionToAdd.appendChild(newItemArticle);
 }
 
 buttonAddTask.addEventListener("click", createArticle);
 
-
 function sendToDone(nameOfTask) {
-  let indexToRemove = toDoList.findIndex(function(obj) {
-  return obj.name === nameOfTask;
+  let indexToRemove = toDoList.findIndex(function (obj) {
+    return obj.name === nameOfTask;
   });
   if (indexToRemove !== -1) {
-      doneList.push(toDoList[indexToRemove]);
-      toDoList.splice(indexToRemove, 1);
-      console.log(toDoList);
-      console.log(doneList);
-  };
-};
+    doneList.push(toDoList[indexToRemove]);
+    toDoList.splice(indexToRemove, 1);
+    console.log(toDoList);
+    console.log(doneList);
+  }
+}
 
-function getInput(){
+function getInput() {
+  let taskToAdd = {
+    name: "",
+    done: false,
+    deadLine: "",
+    priority: "",
+    description: "",
+    category: "",
+  };
 
   let taskField = document.getElementById("add-task-name");
-  let deadlineField = document.getElementById("add-task-date");
-  let describeField = document.getElementById("add-task-comment");
-  let emojiSelector = document.getElementById("add-task-emoji");
-  let categorySelector = document.getElementById("add-task-list");
-
-  const emojiArray = [ "😊", "😅", "🫠" ];
-  let emojiValue = "";
-  if (emojiSelector.value === "green") {
-      emojiValue = emojiArray[0];
-  } else if (emojiSelector.value === "orange") {
-      emojiValue = emojiArray[1];
+  if (taskField.value === "") {
+    taskToAdd.name = "Unnamed task";
   } else {
-      emojiValue = emojiArray[2];
-  };
+    taskToAdd.name = taskField.value;
+  }
 
-  let taskToAdd = {
-      name: taskField.value,
-      done: false,
-      deadLine: deadlineField.value,
-      priority: emojiValue,
-      description: describeField.value,
-      category: categorySelector.value };
+  let deadlineField = document.getElementById("add-task-date");
+  if (deadlineField.value === "") {
+    taskToAdd.deadLine = "Unknown deadline";
+  } else {
+    taskToAdd.deadLine = deadlineField.value;
+  }
+
+  let describeField = document.getElementById("add-task-comment");
+  if (describeField.value === "") {
+    taskToAdd.description = "No details given";
+  } else {
+    taskToAdd.description = describeField.value;
+  }
+
+  let emojiSelector = document.getElementById("add-task-emoji");
+  console.log(emojiSelector.value);
+  switch (emojiSelector.value) {
+    case "green": {
+      taskToAdd.priority = "😊";
+      break;
+    }
+    case "orange": {
+      taskToAdd.priority = "😅";
+      break;
+    }
+    case "red": {
+      taskToAdd.priority = "🫠";
+      break;
+    }
+    default: {
+      taskToAdd.priority = "😊";
+    }
+  }
+  console.log(taskToAdd.priority);
+
+  let categorySelector = document.getElementById("add-task-list");
+  taskToAdd.category = categorySelector.value;
 
   return taskToAdd;
-};
-
-function getInput(){
-
-    let taskField = document.getElementById("add-task-name");
-    let deadlineField = document.getElementById("add-task-date");
-    let describeField = document.getElementById("add-task-comment");
-    let emojiSelector = document.getElementById("add-task-emoji");
-    let categorySelector = document.getElementById("add-task-list");
-
-    const emojiArray = [ "😊", "😅", "🫠" ];
-    let emojiValue = "";
-
-    if (emojiSelector.value === "green") {
-        emojiValue = emojiArray[0];
-    } else if (emojiSelector.value === "orange") {
-        emojiValue = emojiArray[1];
-    } else {
-        emojiValue = emojiArray[2];
-    }
-
-    let taskToAdd = {
-        name: taskField.value,
-        done: false,
-        deadLine: deadlineField.value,
-        priority: emojiValue,
-        description: describeField.value,
-        category: categorySelector.value };
-
-    return taskToAdd;
-};
+}
 
 const listbutton = document.querySelector(".list-task");
 listbutton.addEventListener("click", (event) => {
-    const button = event.target;
-    
-    if (button.tagName === 'BUTTON') {
-       /* const tasklist = button.dataset.type; */
+  const button = event.target;
 
-        // Vérifie si le bouton est déjà actif
-        const isActive = button.classList.contains("active");
+  if (button.tagName === "BUTTON") {
+    /* const tasklist = button.dataset.type; */
 
-        // Si le bouton est actif, retire la classe "active" et filtre par les types restants
-        if (isActive) {
-            button.classList.remove("active");
-        } else {
-            // Si le bouton n'est pas actif, ajoute la classe "active" et filtre par les types existants
-            button.classList.add("active");
-        }
+    // Vérifie si le bouton est déjà actif
+    const isActive = button.classList.contains("active");
 
-        // Récupère tous les boutons actifs
-        const activeButtons = document.querySelectorAll(".list-task button.active");
-        
-        // Si aucun bouton n'est actif, affiche tous les éléments
-        if (activeButtons.length === 0) {
-            const articles = document.querySelectorAll(".task-template");
-            articles.forEach((article) => {
-                article.style.display = "flex";
-            });
-        } else {
-            // Si des boutons sont actifs, filtre par les types des boutons actifs
-            const selectedTypes = Array.from(activeButtons).map((activeButton) => activeButton.dataset.type);
-            filterByType(selectedTypes);
-        }
+    // Si le bouton est actif, retire la classe "active" et filtre par les types restants
+    if (isActive) {
+      button.classList.remove("active");
+    } else {
+      // Si le bouton n'est pas actif, ajoute la classe "active" et filtre par les types existants
+      button.classList.add("active");
     }
+
+    // Récupère tous les boutons actifs
+    const activeButtons = document.querySelectorAll(".list-task button.active");
+
+    // Si aucun bouton n'est actif, affiche tous les éléments
+    if (activeButtons.length === 0) {
+      const articles = document.querySelectorAll(".task-template");
+      articles.forEach((article) => {
+        article.style.display = "flex";
+      });
+    } else {
+      // Si des boutons sont actifs, filtre par les types des boutons actifs
+      const selectedTypes = Array.from(activeButtons).map(
+        (activeButton) => activeButton.dataset.type
+      );
+      filterByType(selectedTypes);
+    }
+  }
 });
 
 function filterByType(selectedTypes) {
-    const articles = document.querySelectorAll(".task-template");
-    articles.forEach((article) => {
-        const articleType = article.classList[1]; // La classe correspond au type de la tâche
-        if (selectedTypes.includes(articleType)) {
-            article.style.display = "flex";
-        } else {
-            article.style.display = "none";
-        }
-    });
+  const articles = document.querySelectorAll(".task-template");
+  articles.forEach((article) => {
+    const articleType = article.classList[1]; // La classe correspond au type de la tâche
+    if (selectedTypes.includes(articleType)) {
+      article.style.display = "flex";
+    } else {
+      article.style.display = "none";
+    }
+  });
 }
 
 // function showPastTasks() {
@@ -217,8 +210,7 @@ function filterByType(selectedTypes) {
 //     } else {
 //         pastTaskButton.classList.remove("active");
 //     }
-    
-    
+
 // }
 
 // const pastTaskButton = document.querySelector(".actual-page button.past-task")
