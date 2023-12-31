@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/css-global.css">
     <link rel="stylesheet" href="css/css-desktop.css">
+    
 </head>
 
 <body>
@@ -14,7 +15,7 @@
         <h1>Hello,</h1>
         <h1>Firstname name</h1>
         <div class="actual-page">
-            <button class="button-nav">PAST TASKS</button>
+            <button class="button-nav past-task">PAST TASKS</button>
             <button class="button-nav current">CURRENT TASKS</button>
             <button class="button-nav">PROFILE</button>
         </div>
@@ -23,11 +24,11 @@
     <section class="list">
         <h2>Task lists</h2>
         <div class="list-task">
-            <button data-type="billard" id="btn-billard">🎱</button>
-            <button data-type="learn" id="btn-learn">🧠</button>  
-            <button data-type="sport" id="btn-sport">⚽</button>
-            <button data-type="food" id="btn-food">🥪</button>
-            <button data-type="travel" id="btn-travel">✈️</button> 
+            <button data-type="1" id="btn-billard">🎱</button>
+            <button data-type="2" id="btn-learn">🧠</button>  
+            <button data-type="3" id="btn-sport">⚽</button>
+            <button data-type="4" id="btn-food">🥪</button>
+            <button data-type="5" id="btn-travel">✈️</button> 
         </div>
         <!--
         <button class="list-add">ADD A NEW LIST</button>
@@ -69,61 +70,14 @@
                     </select>
                     <input type="submit" value="CONFIRM NEW TASK" id="add-task-confirm">
                 </form>
+
             </div>
-
-            <!--
-            <article class="task-template green">
-                
-                <div class="task-title">
-                    <h3>Plan the trip</h3>
-                </div>
-                <div class="task-emoji">😅</div>
-                <div class="task-date green">Barcelona - 13/12 to 13/01</div>
-                <div class="task-place"><a href="https://www.google.com/search?q=La Flore Bar - 21 Rue Tiquetonne"
-                        target="_blank">La Flore Bar - 21 Rue Tiquetonne</a></div>
-                <div class="task-comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas distinctio
-                    debitis, repellendus doloribus sit nulla obcaecati sunt aliquid dolores perferendis minima eligendi
-                    culpa suscipit ad quia consequuntur nihil, placeat fugiat.
-                </div>
-            </article>
-
-            <article class="task-template green">
-                <div class="task-title">
-                    <h3>Plan the trip</h3>
-                </div>
-                <div class="task-emoji">😅</div>
-                <span class="task-date green">Barcelona - 13/12 to 13/01</span>
-                <div class="task-place hidden"></div>
-                <div class="task-comment hidden"></div>
-            </article>
-
-            <article class="task-template orange">
-                <div class="task-title">
-                    <h3>Plan the trip</h3>
-                </div>
-                <div class="task-emoji">😅</div>
-                <span class="task-date hidden"></span>
-                <div class="task-place hidden"></div>
-                <div class="task-comment hidden"></div>
-            </article>
-
-            <article class="task-template red">
-                <div class="task-title">
-                    <h3>Plan the trip</h3>
-                </div>
-                <div class="task-emoji">😅</div>
-                <span class="task-date hidden"></span>
-                <div class="task-place hidden"></div>
-                <div class="task-comment hidden"></div>
-            </article>
-            
-            <button class="task-add">Add a task</button> -->
         </section>
+        <script src="dag_module.js"></script>
+        <script src="script.js"></script>
 
     </main>
 
-<script src="script.js"></script>
-<script src="js/tasksfonction.js" type="module"></script>
 
 </body>
 
