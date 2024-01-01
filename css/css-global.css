@@ -55,6 +55,11 @@ body {
         border-radius: 2rem;
     }
 
+    .actual-page button.past-task.active {
+        background-color: #000;
+        color: white;
+    }
+
     .actual-page .current {
         background-color: var(--bg-color-secondary);
         box-shadow: 0 6px 0 -2px #8E8E8E;
@@ -82,6 +87,13 @@ body {
         color: var(--text-color-secondary);
     }
 
+    .list-task button.active {
+        background-color: grey;
+        padding: 10px;
+        border-radius: 20px; /* ou tout autre valeur appropriée pour créer une forme ovale */
+        /* Ajoutez d'autres styles si nécessaire */
+      }
+      
     .list-task button {
         font-size: 1.6em;
         border: none;
