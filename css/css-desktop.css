@@ -105,10 +105,11 @@ body {
     .list-task button.active {
         background-color: grey;
         padding: 10px;
-        border-radius: 20px; /* ou tout autre valeur appropriée pour créer une forme ovale */
+        border-radius: 20px;
+        /* ou tout autre valeur appropriée pour créer une forme ovale */
         /* Ajoutez d'autres styles si nécessaire */
-      }
-      
+    }
+
 
     .list-task button {
         font-size: 1.6em;
@@ -178,12 +179,19 @@ body {
 
     .task-add {
         height: 64px;
+        grid-column-start: 1;
+        grid-row-start: 1;
         display: flex;
         align-items: center;
         justify-content: space-around;
         background-color: var(--bg-color-secondary);
         border-radius: 2rem;
         color: var(--text-color-secondary);
+    }
+
+    #form-new-task {
+        grid-column-start: 1;
+        grid-row-start: 1;
     }
 
     .set-new-task {
