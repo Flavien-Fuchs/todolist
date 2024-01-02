@@ -8,7 +8,7 @@ function createArticle() {
   const taskToAdd = getInput();
   toDoList.push(taskToAdd);
 
-  const categorySelector = document.getElementById("add-task-list");
+  const categorySelector = document.querySelector('input[name="add-task-emoji"]');
   const newItemArticle = document.createElement("article");
   newItemArticle.classList.add("task-template", categorySelector.value);
   if (taskToAdd.priority === "😅") {
@@ -124,7 +124,7 @@ function getInput() {
     taskToAdd.description = describeField.value;
   }
 
-  let emojiSelector = document.getElementById("add-task-emoji");
+  let emojiSelector = document.querySelector('input[name="add-task-emoji"]:checked');
   console.log(emojiSelector.value);
   switch (emojiSelector.value) {
     case "green": {
@@ -145,7 +145,7 @@ function getInput() {
   }
   console.log(taskToAdd.priority);
 
-  let categorySelector = document.getElementById("add-task-list");
+  let categorySelector = document.querySelector('input[name="add-task-list"]');
   taskToAdd.category = categorySelector.value;
 
   return taskToAdd;
