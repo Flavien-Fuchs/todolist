@@ -1,0 +1,4 @@
+.task-list article.hovered {
+    border: 2px dashed #3498db; /* Change to your desired color */
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.6);
+    }

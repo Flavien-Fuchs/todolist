@@ -7,7 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/css-global.css">
     <link rel="stylesheet" href="css/css-desktop.css">
-
+    
 </head>
 
 <body>
@@ -51,26 +51,26 @@
             </section>
             <section class="task-list">
 
-                <button class="task-add">ADD A NEW TASK</button>
+                <button class="task-add ">ADD A NEW TASK</button>
 
 
-                <form id="form-new-task" class="hidden">
+                <form id="form-new-task">
                     <div class="set-new-task">
                         <input type="text" name="add-task-name" id="add-task-name" placeholder="New Task" required />
                         <hr />
                         <textarea id="add-task-comment" name="story" placeholder="Describe your task"></textarea>
-                        <div class="add-task-emoji">
-                            <input type="radio" id="radio1" name="add-task-emoji" value="😊" checked />
+                        <div id="add-task-emoji" class="add-task-emoji">
+                            <input type="radio" id="radio1" name="add-task-emoji" value="😊"/>
                             <label for="radio1">😊</label>
-                            <input type="radio" id="radio2" name="add-task-emoji" value="😅" />
+                            <input type="radio" id="radio2" name="add-task-emoji" value="😅"/>
                             <label for="radio2">😅</label>
-                            <input type="radio" id="radio3" name="add-task-emoji" value="🫠" />
+                            <input type="radio" id="radio3" name="add-task-emoji" value="🫠"/>
                             <label for="radio3">🫠</label>
                         </div>
                         <input type="text" name="add-task-date" id="add-task-date" placeholder="SET A DATE" />
                         <input type="text" name="add-task-place" id="add-task-place" placeholder="SET A PLACE" />
                     </div>
-                    <div class="add-task-list">
+                    <div class="add-task-list" id="add-task-list">
                         <input type="radio" id="radio-list1" name="add-task-list" value="🎱" checked />
                         <label for="radio-list1">🎱</label>
                         <input type="radio" id="radio-list2" name="add-task-list" value="🧠" />
@@ -108,10 +108,10 @@
 
 
     </main>
-
+    <script src="js_animations.js"></script>
     <script src="dag_module.js"></script>
     <script src="script.js"></script>
-    <script src="js/tasks.js" type="module"></script>
+    <!-- <script src="js/tasksfonction.js" type="module"></script> -->
 
 
 </body>

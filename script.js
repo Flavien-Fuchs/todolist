@@ -6,9 +6,13 @@ let doneList = [];
 
 function createArticle() {
   const taskToAdd = getInput();
+
+  const emojiSelector = document.querySelector('input[name="add-task-emoji"]:checked');
+  taskToAdd.priority = emojiSelector ? emojiSelector.value : "";
+
   toDoList.push(taskToAdd);
 
-  const categorySelector = document.querySelector('input[name="add-task-emoji"]');
+  const categorySelector = document.getElementById("add-task-list");
   const newItemArticle = document.createElement("article");
   newItemArticle.classList.add("task-template", categorySelector.value);
   if (taskToAdd.priority === "😅") {
@@ -20,6 +24,7 @@ function createArticle() {
   }
 
   newItemArticle.addEventListener("click", function () {
+    onDeleteAnimation(newItemArticle);
     setTimeout(function () {
       newItemArticle.remove();
       sendToDone(newTitle.innerText);
@@ -64,6 +69,7 @@ function createArticle() {
 
   newItemArticle.addEventListener("click", function () {
     setTimeout(function () {
+
       newItemArticle.remove();
       sendToDone(newTitle.innerText);
     }, 500);
@@ -73,6 +79,7 @@ function createArticle() {
   if (sectionToAdd.hasChildNodes) {
     const first = sectionToAdd.children[0];
     sectionToAdd.insertBefore(newItemArticle, first);
+    DragAndDropModule.init();
     return;
   }
 
@@ -124,29 +131,20 @@ function getInput() {
     taskToAdd.description = describeField.value;
   }
 
-  let emojiSelector = document.querySelector('input[name="add-task-emoji"]:checked');
-  console.log(emojiSelector.value);
-  switch (emojiSelector.value) {
-    case "green": {
-      taskToAdd.priority = "😊";
-      break;
-    }
-    case "orange": {
-      taskToAdd.priority = "😅";
-      break;
-    }
-    case "red": {
-      taskToAdd.priority = "🫠";
-      break;
-    }
-    default: {
-      taskToAdd.priority = "😊";
-    }
-  }
+  document.querySelectorAll('input[name="add-task-emoji"]').forEach((radio) => {
+    radio.addEventListener('change', () => {
+    document.querySelector('input[name="add-task-emoji"]:checked');
+    });
+});
   console.log(taskToAdd.priority);
 
-  let categorySelector = document.querySelector('input[name="add-task-list"]');
-  taskToAdd.category = categorySelector.value;
+  document.querySelectorAll('input[name="add-task-list"]').forEach((radio) => {
+    radio.addEventListener('change', () => {
+      let categorySelector = document.querySelector('input[name="add-task-list"]:checked');
+      taskToAdd.category = categorySelector ? categorySelector.value : "";
+      console.log(taskToAdd.category);
+    });
+  });
 
   return taskToAdd;
 }
