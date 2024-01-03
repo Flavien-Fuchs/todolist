@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/css-global.css">
-</head>
+    <link rel="stylesheet" href="css-global.css">
+    <link rel="stylesheet" href="css-desktop.css">
 
 <body>
     <header class="header">
         <h1>Hello,</h1>
         <h1>Firstname name</h1>
         <div class="actual-page">
-            <button class="button-nav">PAST TASKS</button>
+            <button class="button-nav past-task">PAST TASKS</button>
             <button class="button-nav current">CURRENT TASKS</button>
             <button class="button-nav">PROFILE</button>
         </div>
@@ -22,12 +19,13 @@
     <section class="list">
         <h2>Task lists</h2>
         <div class="list-task">
-            <button>🎱</button>
-            <button>🧠</button>
-            <button>⚽</button>
-            <button>🥪</button>
-            <button>✈️</button>
+            <button data-type="1" id="btn-billard" class="">🎱</button>
+            <button data-type="2" id="btn-learn" class="">🧠</button>  
+            <button data-type="3" id="btn-sport" class="">⚽</button>
+            <button data-type="4" id="btn-food" class="">🥪</button>
+            <button data-type="5" id="btn-travel" class="">✈️</button> 
         </div>
+        <!--
         <button class="list-add">ADD A NEW LIST</button>
         <div class="list-add-container">
             <form>
@@ -35,65 +33,43 @@
                 <button class="new-list-button">ADD LIST</button>
             </form>
         </div>
-
+        -->
     </section>
 
     <main>
         <section class="doToday">
             <h1>What to do today</h1>
         </section>
-        <section class="task-list">
+       
 
-            <button class="task-add">ADD A TASK</button>
+            <button class="task-add">ADD A NEW TASK</button>
 
+            <div class="set-new-task">
+                <form>
+                    <input type="text" name="add-task-name" id="add-task-name" placeholder="New Task" required="">
+                    <!-- <input type="text" name="add-task-name" id="add-task-name" required /> -->
+                    <textarea id="add-task-comment" name="story" placeholder="Describe your task"></textarea>
+                    <select name="emoji-bar" id="add-task-emoji">
+                        <option value="green">😊</option>
+                        <option value="orange">😅</option>
+                        <option value="red">🫠</option>
+                      </select>
+                    <input type="text" name="add-task-date" id="add-task-date" placeholder="Deadline">
+                    <!-- <input type="text" name="add-task-place" id="add-task-place" /> -->
+                    <select name="add-task-list" id="add-task-list">
+                        <option value="1">🎱</option>
+                        <option value="2">🧠</option>
+                        <option value="3">⚽</option>
+                        <option value="4">🥪</option>
+                        <option value="5">✈️</option>
+                    </select>
+                    <input type="submit" value="CONFIRM NEW TASK" id="add-task-confirm">
+                </form>
 
-            <article class="task-template green">
-
-                <div class="task-title">
-                    <h3>Plan the trip</h3>
-                </div>
-                <div class="task-emoji">😅</div>
-                <div class="task-date green">Barcelona - 13/12 to 13/01</div>
-                <div class="task-place"><a href="https://www.google.com/search?q=La Flore Bar - 21 Rue Tiquetonne"
-                        target="_blank">La Flore Bar - 21 Rue Tiquetonne</a></div>
-                <div class="task-comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas distinctio
-                    debitis, repellendus doloribus sit nulla obcaecati sunt aliquid dolores perferendis minima eligendi
-                    culpa suscipit ad quia consequuntur nihil, placeat fugiat.
-                </div>
-            </article>
-
-            <article class="task-template green">
-                <div class="task-title">
-                    <h3>Plan the trip</h3>
-                </div>
-                <div class="task-emoji">😅</div>
-                <span class="task-date green">Barcelona - 13/12 to 13/01</span>
-                <div class="task-place hidden"></div>
-                <div class="task-comment hidden"></div>
-            </article>
-
-            <article class="task-template orange">
-                <div class="task-title">
-                    <h3>Plan the trip</h3>
-                </div>
-                <div class="task-emoji">😅</div>
-                <span class="task-date hidden"></span>
-                <div class="task-place hidden"></div>
-                <div class="task-comment hidden"></div>
-            </article>
-
-            <article class="task-template red">
-                <div class="task-title">
-                    <h3>Plan the trip</h3>
-                </div>
-                <div class="task-emoji">😅</div>
-                <span class="task-date hidden"></span>
-                <div class="task-place hidden"></div>
-                <div class="task-comment hidden"></div>
-            </article>
-
+            </div>
+            <section class="task-list">
         </section>
+        <script src="js_animations.js"></script>
+        <script src="dag_module.js"></script>
+        <script src="script.js"></script>
     </main>
-</body>
-
-</html>
