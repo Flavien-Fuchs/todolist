@@ -72,6 +72,9 @@ function createArticle() {
   newItemArticle.addEventListener("click", function () {
     setTimeout(function () {
       pastSectionToAdd.appendChild(newItemArticle)
+      if(pastSectionToAdd.style.display === "block") {
+        sectionToAdd.appendChild(newItemArticle)
+      }
       sendToDone(newTitle.innerText);
     }, 500);
   });
@@ -215,7 +218,7 @@ function showPastTasks() {
         currentButton.classList.remove("active")
         pastSectionToAdd.style.display = "block"
         sectionToAdd.style.display = "none"
-        }
+    }  
   }
 
 function showCurrentTasks() {
