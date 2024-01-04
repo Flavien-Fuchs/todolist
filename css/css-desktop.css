@@ -22,13 +22,14 @@ body {
 }
 
 
-@media screen and (max-width: 810px) {
+@media screen and (min-width: 811px) {
 
     /* -------------------------------------------------- */
     /* Style du header */
     /* -------------------------------------------------- */
     .header {
         padding: 1rem 2rem;
+        display: flex;
     }
 
     .header h1 {
@@ -40,9 +41,10 @@ body {
     }
 
     .actual-page {
+        width: 360px;
         display: flex;
         justify-content: space-between;
-        margin: 1rem 0;
+        margin: 1rem 4rem;
     }
 
     .actual-page .button-nav {
@@ -64,7 +66,7 @@ body {
         background-color: var(--bg-color-primary);
         color: var(--text-color-primary);
     }
-
+    
     .actual-page .current.active {
         background-color: var(--bg-color-secondary);
         box-shadow: 0 6px 0 -2px #8E8E8E;
@@ -75,22 +77,35 @@ body {
     /* Style des éléments pour les listes */
     /* -------------------------------------------------- */
 
+
     .list {
         padding: 1rem 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
     }
+
+    .list h2 {
+        width: 100%;
+    }
+
+
 
     .list-task {
         height: 62px;
+        width: calc(100% - 400px);
         display: flex;
         align-items: center;
         justify-content: space-around;
-        margin: 1rem auto 0.5rem auto;
+        margin: 0;
         padding: 0 8%;
         background-color: var(--bg-color-primary);
         border: 1px solid #000;
         border-radius: 2rem;
         color: var(--text-color-secondary);
     }
+
 
     .list-task button.active {
         background-color: grey;
@@ -99,6 +114,7 @@ body {
         /* Ajoutez d'autres styles si nécessaire */
       }
       
+
     .list-task button {
         font-size: 1.6em;
         border: none;
@@ -107,31 +123,29 @@ body {
 
     .list-add {
         height: 62px;
-        width: 100%;
+        width: 360px;
         display: flex;
         align-items: center;
         justify-content: space-around;
-        margin: 0 auto 2rem auto;
         background-color: var(--bg-color-secondary);
         border-radius: 2rem;
         color: var(--text-color-secondary);
     }
 
-    .list-add-button {
-        width: 100%;
+    .list-add-container {
         position: relative;
         display: flex;
-        height: 62px;
+        width: 360px;
+        height: 42px;
         align-items: center;
         justify-content: space-around;
-        margin: 0 auto 2rem auto;
         background-color: var(--bg-color-third);
         border-radius: 2rem;
         color: var(--text-color-secondary);
     }
 
 
-    .list-add-button input {
+    .list-add-container input {
         background-color: var(--bg-color-third);
         width: 100%;
         border: none;
@@ -149,7 +163,7 @@ body {
     }
 
 
-    .list-add-button .new-list-button {
+    .list-add-container .new-list-button {
         position: absolute;
         width: 40%;
         bottom: -0.5rem;
@@ -166,17 +180,12 @@ body {
     /* -------------------------------------------------- */
     /* Style des éléments ce création de tache */
     /* -------------------------------------------------- */
-    main {
-        padding: 1rem 2rem;
-    }
 
     .task-add {
-        width: 100%;
         height: 64px;
         display: flex;
         align-items: center;
         justify-content: space-around;
-        margin: 2rem auto 2rem auto;
         background-color: var(--bg-color-secondary);
         border-radius: 2rem;
         color: var(--text-color-secondary);
@@ -184,7 +193,7 @@ body {
 
     .set-new-task {
         position: relative;
-        margin: 2rem auto 1rem auto;
+        margin: 0 auto;
         padding: 1rem 0;
         border: 1px black solid;
         border-radius: 2rem;
@@ -200,7 +209,7 @@ body {
     .set-new-task input:nth-child(1),
     .set-new-task textarea {
         width: 100%;
-        padding: 0.3rem 2rem;
+        padding: 0.3rem 3.5rem;
         margin: .4rem 0;
         border: none;
         font-size: 1rem;
@@ -227,8 +236,8 @@ body {
     .set-new-task .add-task-emoji {
         position: absolute;
         background-color: var(--bg-color-primary);
-        top: 1.2rem;
-        right: -1.5rem;
+        top: 0;
+        right: 0;
         display: flex;
         flex-direction: column;
         border: 1px black solid;
@@ -316,18 +325,47 @@ body {
     /* Style des éléments dans la todolist */
     /* -------------------------------------------------- */
 
+    main {
+        width: 100%;
+        margin-top: 2rem;
+        padding: 0 2%;
+    }
+
+    .doToday {
+        width: 100%;
+        margin-bottom: 2em;
+    }
+
+
+
+    .task-list {
+        width: 100%;
+        padding: 0 2%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
+        grid-auto-rows: minmax(auto, auto);
+        align-items: start;
+        justify-items: center;
+
+
+    }
+
+    .task-list>* {
+        width: 380px;
+    }
+
+
     .task-list article.task-template {
         position: relative;
         display: flex;
         flex-direction: column;
-        margin: 2rem auto;
         padding: 1rem 0;
         background-color: var(--bg-color-primary);
         border: 1px black solid;
         border-radius: 2rem;
         color: var(--text-color-primary);
         font-weight: 600;
-        opacity: 100%;
     }
 
     .task-list article h3 {
@@ -395,4 +433,17 @@ body {
         box-shadow: 0px 6px 0px -2px #F87060;
     }
 
+}
+
+
+@media screen and (min-width: 1200px) {
+    .task-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .task-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
