@@ -38,7 +38,12 @@ function onDeleteAnimation(articleElement) {
             opacity: 0,
             transform: 'scale(1.1)',
 
-        }
+        },
+        {
+            opacity: 1,
+            transform: 'scale(1)',
+
+        },   
     ];
     
     articleElement.animate(animation, {
@@ -58,6 +63,10 @@ function onDeleteAnimation(articleElement) {
         {
             transform: `translateX(-${articleElement.offsetWidth}px) rotate(-360deg)`,
             opacity: 0,
+        },
+        {
+            transform: 'translateX(0) rotate(0)',
+            opacity: 1,
         }
     ], {
         duration: 700,
@@ -71,6 +80,9 @@ function onDeleteAnimation(articleElement) {
 
         {
             opacity: 1,
+        },
+        {
+            opacity: 0,
         },
         {
             opacity: 0,
@@ -90,6 +102,9 @@ function onDeleteAnimation(articleElement) {
         },
         {
             opacity: 0,
+        },
+        {
+            opacity: 1,
         }
     ], {
         duration: 700,

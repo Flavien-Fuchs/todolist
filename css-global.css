@@ -327,6 +327,7 @@ body {
         border-radius: 2rem;
         color: var(--text-color-primary);
         font-weight: 600;
+        opacity: 100%;
     }
 
     .task-list article h3 {

@@ -1,6 +1,7 @@
 let buttonAddTask = document.querySelector(".task-add");
 let sectionToAdd = document.querySelector("section.task-list");
 let pastSectionToAdd = document.querySelector("section.task-list.done")
+pastSectionToAdd.style.display = "none";
 let toDoList = [];
 let doneList = [];
 
@@ -217,7 +218,7 @@ function showPastTasks() {
         }
   }
 
-  function showCurrentTasks() {
+function showCurrentTasks() {
       pastTaskButton.classList.remove("active");
       currentButton.classList.add("active");
       pastSectionToAdd.style.display = "none"
