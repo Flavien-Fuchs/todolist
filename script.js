@@ -1,8 +1,9 @@
 let buttonAddTask = document.querySelector(".task-add");
 let sectionToAdd = document.querySelector("section.task-list");
-
+let pastSectionToAdd = document.querySelector("section.task-list.done")
 let toDoList = [];
 let doneList = [];
+
 
 function createArticle() {
   const taskToAdd = getInput();
@@ -22,7 +23,6 @@ function createArticle() {
   newItemArticle.addEventListener("click", function () {
     onDeleteAnimation(newItemArticle);
     setTimeout(function () {
-      newItemArticle.remove();
       sendToDone(newTitle.innerText);
     }, 500);
   });
@@ -61,11 +61,16 @@ function createArticle() {
   } else {
     newComment.classList.add("hidden");
   }
+
+  const newCategory = document.createElement("div");
+  newCategory.innerText = taskToAdd.category
+  newItemArticle.appendChild(newCategory)
+
   newItemArticle.appendChild(newComment);
 
   newItemArticle.addEventListener("click", function () {
     setTimeout(function () {
-      newItemArticle.remove();
+      pastSectionToAdd.appendChild(newItemArticle)
       sendToDone(newTitle.innerText);
     }, 500);
   });
@@ -88,11 +93,13 @@ function sendToDone(nameOfTask) {
     return obj.name === nameOfTask;
   });
   if (indexToRemove !== -1) {
+    toDoList[indexToRemove].done = true;
     doneList.push(toDoList[indexToRemove]);
     toDoList.splice(indexToRemove, 1);
     console.log(toDoList);
     console.log(doneList);
   }
+
 }
 
 function getInput() {
@@ -149,7 +156,7 @@ function getInput() {
   console.log(taskToAdd.priority);
 
   let categorySelector = document.getElementById("add-task-list");
-  taskToAdd.category = categorySelector.value;
+  taskToAdd.category = categorySelector.options[categorySelector.selectedIndex].innerText;
 
   return taskToAdd;
 }
@@ -159,30 +166,23 @@ listbutton.addEventListener("click", (event) => {
   const button = event.target;
 
   if (button.tagName === "BUTTON") {
-    /* const tasklist = button.dataset.type; */
 
-    // Vérifie si le bouton est déjà actif
     const isActive = button.classList.contains("active");
 
-    // Si le bouton est actif, retire la classe "active" et filtre par les types restants
     if (isActive) {
       button.classList.remove("active");
     } else {
-      // Si le bouton n'est pas actif, ajoute la classe "active" et filtre par les types existants
       button.classList.add("active");
     }
 
-    // Récupère tous les boutons actifs
     const activeButtons = document.querySelectorAll(".list-task button.active");
 
-    // Si aucun bouton n'est actif, affiche tous les éléments
     if (activeButtons.length === 0) {
       const articles = document.querySelectorAll(".task-template");
       articles.forEach((article) => {
         article.style.display = "flex";
       });
     } else {
-      // Si des boutons sont actifs, filtre par les types des boutons actifs
       const selectedTypes = Array.from(activeButtons).map(
         (activeButton) => activeButton.dataset.type
       );
@@ -203,18 +203,28 @@ function filterByType(selectedTypes) {
   });
 }
 
-// function showPastTasks() {
-//     // Efface le contenu actuel de la section "doToday"
-//     const doTodaySection = document.querySelector(".doToday");
-//     const isActive = pastTaskButton.classList.contains("active");
-//     if (!isActive){
-//         pastTaskButton.classList.add("active");
-//         doTodaySection.innerHTML = "";
-//     } else {
-//         pastTaskButton.classList.remove("active");
-//     }
 
-// }
+function showPastTasks() {
+    const isActive = pastTaskButton.classList.contains("active");
+    const doTodaySection = document.querySelector('.dotoday')
+    doTodaySection.innerHTML = "";
 
-// const pastTaskButton = document.querySelector(".actual-page button.past-task")
-// pastTaskButton.addEventListener("click", showPastTasks)
+    if (!isActive){
+        pastTaskButton.classList.add("active");
+        currentButton.classList.remove("active")
+        pastSectionToAdd.style.display = "block"
+        sectionToAdd.style.display = "none"
+        }
+  }
+
+  function showCurrentTasks() {
+      pastTaskButton.classList.remove("active");
+      currentButton.classList.add("active");
+      pastSectionToAdd.style.display = "none"
+      sectionToAdd.style.display = "block"
+  } 
+  
+const pastTaskButton = document.querySelector(".actual-page button.past-task")
+const currentButton = document.querySelector(".actual-page button.current")
+pastTaskButton.addEventListener("click", showPastTasks)
+currentButton.addEventListener("click", showCurrentTasks)
