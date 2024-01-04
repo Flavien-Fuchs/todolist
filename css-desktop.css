@@ -55,7 +55,6 @@ body {
         color: var(--text-color-primary);
         border: 1px solid #000;
         border-radius: 2rem;
-        text-transform: uppercase;
     }
 
     .actual-page button.past-task.active {
@@ -64,11 +63,10 @@ body {
     }
 
     .actual-page .current {
-        background-color: var(--bg-color-secondary);
-        box-shadow: 0 6px 0 -2px #8E8E8E;
-        color: var(--text-color-secondary);
+        background-color: var(--bg-color-primary);
+        color: var(--text-color-primary);
     }
-
+    
     .actual-page .current.active {
         background-color: var(--bg-color-secondary);
         box-shadow: 0 6px 0 -2px #8E8E8E;
@@ -110,11 +108,12 @@ body {
 
 
     .list-task button.active {
-        background-color: var(--bg-color-button);
+        background-color: grey;
         padding: 10px;
-        border-radius: 2rem;
-    }
-
+        border-radius: 20px; /* ou tout autre valeur appropriée pour créer une forme ovale */
+        /* Ajoutez d'autres styles si nécessaire */
+      }
+      
 
     .list-task button {
         font-size: 1.6em;
@@ -131,7 +130,6 @@ body {
         background-color: var(--bg-color-secondary);
         border-radius: 2rem;
         color: var(--text-color-secondary);
-        text-transform: uppercase;
     }
 
     .list-add-container {
@@ -175,7 +173,6 @@ body {
         border-radius: 2em;
         text-align: center;
         color: var(--text-color-secondary);
-        text-transform: uppercase;
     }
 
 
@@ -186,24 +183,12 @@ body {
 
     .task-add {
         height: 64px;
-        width: 380px;
-        grid-column-start: 1;
-        grid-row-start: 1;
         display: flex;
         align-items: center;
         justify-content: space-around;
         background-color: var(--bg-color-secondary);
         border-radius: 2rem;
         color: var(--text-color-secondary);
-        text-transform: uppercase;
-    }
-
-    .form-new-task {
-        grid-column-start: 1;
-        grid-row-start: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
     }
 
     .set-new-task {
@@ -248,39 +233,35 @@ body {
         min-height: 5.5rem;
     }
 
-    .set-new-task #add-task-emoji {
-        appearance: none;
-        background-color: transparent;
+    .set-new-task .add-task-emoji {
         position: absolute;
-        width: 2.4rem;
-        height: 8rem;
         background-color: var(--bg-color-primary);
         top: 0;
         right: 0;
-        display: grid;
-        grid-template-areas: "select";
-        align-items: center;
-        justify-content: center;
-        outline: none;
-        overflow: hidden;
+        display: flex;
+        flex-direction: column;
         border: 1px black solid;
         border-radius: 2rem;
-        font-size: 1.4rem;
+    }
+
+    .add-task-emoji input[type="radio"],
+    .add-task-list input[type="radio"] {
+        display: none;
+    }
+
+    .add-task-emoji label,
+    .add-task-list label {
+        background-color: var(--bg-color-primary);
         cursor: pointer;
-
+        font-size: 1.4rem;
+        margin: 0.3rem;
+        padding: 0.3rem;
+        border-radius: 2rem;
     }
 
-    #add-task-emoji option:focus {
+    .add-task-emoji input[type="radio"]:checked+label,
+    .add-task-list input[type="radio"]:checked+label {
         background-color: var(--bg-color-third);
-        border-radius: 2rem;
-    }
-
-    option {
-        white-space: normal;
-        outline-color: var(--bg-color-button);
-        margin: .5rem .2rem;
-        border-radius: 2rem;
-
     }
 
     #add-task-date {
@@ -296,7 +277,6 @@ body {
 
         &::placeholder {
             color: var(--text-color-secondary);
-            text-transform: uppercase;
         }
     }
 
@@ -313,40 +293,32 @@ body {
 
         &::placeholder {
             color: var(--text-color-secondary);
-            text-transform: uppercase;
         }
     }
 
-    #add-task-list {
-        width: 400px;
-        height: 3rem;
-        margin: 1rem auto 0.5rem auto;
+    .add-task-list {
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin: 0 auto 0.5rem auto;
         padding: 0 8%;
         background-color: var(--bg-color-primary);
         border: 1px solid #000;
         border-radius: 2rem;
         color: var(--text-color-secondary);
-        overflow: hidden;
-        font-size: 1.4rem;
-    }
-
-    #add-task-list option {
-        width: 2rem;
-        display: inline-block;
-        margin-right: 1rem;
     }
 
     #add-task-confirm {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 200px;
+        width: 50%;
         padding: 0.2rem 0;
         margin: 0 auto;
         background-color: var(--bg-color-secondary);
         color: var(--text-color-secondary);
         border-radius: 2rem;
-        text-transform: uppercase;
     }
 
     /* -------------------------------------------------- */
@@ -369,13 +341,14 @@ body {
     .task-list {
         width: 100%;
         padding: 0 2%;
-        margin-top: 2rem;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 10px;
         grid-auto-rows: minmax(auto, auto);
         align-items: start;
         justify-items: center;
+
+
     }
 
     .task-list>* {
@@ -397,13 +370,6 @@ body {
 
     .task-list article h3 {
         text-align: center;
-    }
-
-    .task-delete {
-        position: absolute;
-        top: 0.6rem;
-        left: 0.5rem;
-        font-size: 1.4rem;
     }
 
     .task-list article .task-emoji {
