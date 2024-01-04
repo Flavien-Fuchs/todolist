@@ -1,21 +1,74 @@
-let buttonAddTask = document.querySelector("#add-task-confirm");
+let buttonAddTask = document.getElementById("add-task-confirm");
+let sectionToAdd = document.querySelector("section.task-list");
+
 let addTaskButton = document.querySelector(".task-add");
 let addTaskContainer = document.querySelector("#form-new-task");
-let sectionToAdd = document.querySelector("section.task-list");
+
 let pastSectionToAdd = document.querySelector("section.task-list.done")
 pastSectionToAdd.style.display = "none";
+
+addTaskButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  toggleVisibility();
+});
+
+function toggleVisibility() {
+  addTaskButton.classList.toggle("hidden");
+  addTaskContainer.classList.toggle("hidden");
+}
 
 let toDoList = [];
 let doneList = [];
 
-addTaskButton.addEventListener("click", function () {
-  addTaskButton.classList.add("hidden");
-  addTaskContainer.classList.toggle("hidden");
-})
+function createCategory(emoji) {
 
-function createArticle(event) {
+  const listTaskContainer = document.querySelector(".list-task");
 
-  event.preventDefault();
+  const newCategoryButton = document.createElement("button");
+  newCategoryButton.dataset.type = listTaskContainer.children.length + 1;
+  newCategoryButton.innerText = emoji;
+
+  newCategoryButton.addEventListener("click", function () {
+    updateCategoryOptions();
+  });
+
+  listTaskContainer.appendChild(newCategoryButton);
+  updateCategoryOptions();
+}
+
+function updateCategoryOptions() {
+  const addTaskListSelect = document.getElementById("add-task-list");
+  const listTaskContainer = document.querySelector(".list-task");
+  addTaskListSelect.innerHTML = "";
+  listTaskContainer.querySelectorAll("button").forEach(function (categoryButton) {
+    const option = document.createElement("option");
+    option.value = categoryButton.dataset.type;
+    option.innerText = categoryButton.innerText;
+    addTaskListSelect.appendChild(option);
+  });
+}
+
+const addListButton = document.getElementById("addListButton");
+const emojiModal = document.getElementById("emojiModal");
+
+addListButton.addEventListener("click", function () {
+  emojiModal.style.display = "block";
+});
+
+emojiModal.addEventListener("click", function (event) {
+  if (event.target.tagName === "BUTTON") {
+    createCategory(event.target.innerText);
+    emojiModal.style.display = "none";
+  }
+});
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    emojiModal.style.display = "none";
+  }
+});
+
+function createArticle() {
   const taskToAdd = getInput();
   toDoList.push(taskToAdd);
 
@@ -29,7 +82,6 @@ function createArticle(event) {
   } else {
     newItemArticle.classList.add("red");
   }
-
 
   const newTitleDiv = document.createElement("div");
   newTitleDiv.classList.add("task-title");
@@ -76,7 +128,6 @@ function createArticle(event) {
   }
   newItemArticle.appendChild(newPlace);
 
-
   const newComment = document.createElement("div");
   newComment.classList.add("task-comment");
   if (taskToAdd.deadLine) {
@@ -84,22 +135,8 @@ function createArticle(event) {
   } else {
     newComment.classList.add("hidden");
   }
-  addTaskButton.classList.toggle("hidden");
-  addTaskContainer.classList.toggle("hidden");
-
-  /*   const newCategory = document.createElement("div");
-    newCategory.innerText = taskToAdd.category;
-    newItemArticle.appendChild(newCategory); */
-
   newItemArticle.appendChild(newComment);
 
-  /*  newDeleteSpan.addEventListener("click", function () {
-     onDeleteAnimation(newItemArticle);
-     setTimeout(function () {
-       newItemArticle.remove();
-       sendToDone(newTitle.innerText);
-     }, 500);
-   }); */
 
   newDeleteSpan.addEventListener("click", function () {
     onDeleteAnimation(newItemArticle);
@@ -121,9 +158,13 @@ function createArticle(event) {
 
   sectionToAdd.appendChild(newItemArticle);
 }
-
-buttonAddTask.addEventListener("click", createArticle);
 DragAndDropModule.init();
+
+buttonAddTask.addEventListener("click", function (event) {
+  event.preventDefault();
+  createArticle();
+  toggleVisibility()
+});
 
 function sendToDone(nameOfTask) {
   let indexToRemove = toDoList.findIndex(function (obj) {
@@ -172,7 +213,7 @@ function getInput() {
 
   let describeField = document.getElementById("add-task-comment");
   if (describeField.value === "") {
-    taskToAdd.description = "No details given";
+    taskToAdd.description = "";
   } else {
     taskToAdd.description = describeField.value;
   }
@@ -200,8 +241,9 @@ function getInput() {
   console.log(taskToAdd.priority);
 
   let categorySelector = document.getElementById("add-task-list");
-  taskToAdd.category = categorySelector.options[categorySelector.selectedIndex].innerText;
-  document.getElementById("form-new-task").reset();
+  taskToAdd.category = categorySelector.value;
+  /* document.getElementsByClassName("form-new-task").reset(); */
+
 
   return taskToAdd;
 }
@@ -248,30 +290,31 @@ function filterByType(selectedTypes) {
   });
 }
 
-
 function showPastTasks() {
   const isActive = pastTaskButton.classList.contains("active");
-  const doTodaySection = document.querySelector('#title-list')
+  const doTodaySection = document.querySelector('#title-list');
   doTodaySection.innerText = "Tasks already dones";
 
   if (!isActive) {
     pastTaskButton.classList.add("active");
-    currentButton.classList.remove("active")
-    pastSectionToAdd.style.display = "grid"
-    sectionToAdd.style.display = "none"
+    currentButton.classList.remove("active");
+    currentButton.classList.remove("current");
+    pastSectionToAdd.style.display = "grid";
+    sectionToAdd.style.display = "none";
   }
 }
 
 function showCurrentTasks() {
   pastTaskButton.classList.remove("active");
   currentButton.classList.add("active");
-  pastSectionToAdd.style.display = "none"
-  sectionToAdd.style.display = "grid"
-  const doTodaySection = document.querySelector('#title-list')
+  currentButton.classList.add("current");
+  pastSectionToAdd.style.display = "none";
+  sectionToAdd.style.display = "grid";
+  const doTodaySection = document.querySelector('#title-list');
   doTodaySection.innerText = "What to do today?";
 }
 
-const pastTaskButton = document.querySelector(".actual-page button.past-task")
-const currentButton = document.querySelector(".actual-page button.current")
-pastTaskButton.addEventListener("click", showPastTasks)
-currentButton.addEventListener("click", showCurrentTasks)
+const pastTaskButton = document.querySelector(".actual-page button.past-task");
+const currentButton = document.querySelector(".actual-page button.current");
+pastTaskButton.addEventListener("click", showPastTasks);
+currentButton.addEventListener("click", showCurrentTasks);
