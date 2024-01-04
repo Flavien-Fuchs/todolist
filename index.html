@@ -1,14 +1,22 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="emoji-list.css">
     <link rel="stylesheet" href="css-global.css">
     <link rel="stylesheet" href="css-desktop.css">
 
+</head>
+
 <body>
     <header class="header">
-        <h1>Hello,</h1>
-        <h1>Firstname name</h1>
+        <div>
+            <h1>Hello,</h1>
+            <h1>Firstname name</h1>
+        </div>
         <div class="actual-page">
             <button class="button-nav past-task">PAST TASKS</button>
             <button class="button-nav current">CURRENT TASKS</button>
@@ -19,57 +27,118 @@
     <section class="list">
         <h2>Task lists</h2>
         <div class="list-task">
-            <button data-type="1" id="btn-billard" class="">🎱</button>
-            <button data-type="2" id="btn-learn" class="">🧠</button>  
-            <button data-type="3" id="btn-sport" class="">⚽</button>
-            <button data-type="4" id="btn-food" class="">🥪</button>
-            <button data-type="5" id="btn-travel" class="">✈️</button> 
+
+        <button data-type="1" id="btn-billard">🎱</button>
+        <button data-type="2" id="btn-learn">🧠</button>
+        <button data-type="3" id="btn-sport">⚽</button>
+        <button data-type="4" id="btn-food">🥪</button>
+        <button data-type="5" id="btn-travel">✈️</button>
+    </div>
+
+        <button class="list-add" id="addListButton">ADD LIST</button>
+
+        <div class="emoji-modal" id="emojiModal">
+            <button>😊</button>
+            <button>🌟</button>
+            <button>📅</button>
+            <button>✅</button>
+            <button>🎉</button>
+            <button>📝</button>
+            <button>🔔</button>
+            <button>🎯</button>
+            <button>📌</button>
+            <button>🛒</button>
+            <button>🎈</button>
+            <button>💡</button>
+            <button>📚</button>
+            <button>🔍</button>
+            <button>🚀</button>
+            <button>💻</button>
+            <button>🗂️</button>
+            <button>🔗</button>
+            <button>📎</button>
+            <button>🎨</button>
         </div>
-        <!--
-        <button class="list-add">ADD A NEW LIST</button>
-        <div class="list-add-container">
-            <form>
-                <input type="text" name="new-list-name" id="new-list-name" placeholder="Name your list">
-                <button class="new-list-button">ADD LIST</button>
-            </form>
         </div>
-        -->
     </section>
-
     <main>
-        <section class="doToday">
-            <h1>What to do today</h1>
-        </section>
-       
 
-            <button class="task-add">ADD A NEW TASK</button>
+        <div class="list-container">
+            <section class="doToday">
+                <h1>What to do today?</h1>
+            </section>
+            <section class="task-list">
 
-            <div class="set-new-task">
-                <form>
-                    <input type="text" name="add-task-name" id="add-task-name" placeholder="New Task" required="">
-                    <!-- <input type="text" name="add-task-name" id="add-task-name" required /> -->
-                    <textarea id="add-task-comment" name="story" placeholder="Describe your task"></textarea>
-                    <select name="emoji-bar" id="add-task-emoji">
-                        <option value="green">😊</option>
-                        <option value="orange">😅</option>
-                        <option value="red">🫠</option>
-                      </select>
-                    <input type="text" name="add-task-date" id="add-task-date" placeholder="Deadline">
-                    <!-- <input type="text" name="add-task-place" id="add-task-place" /> -->
-                    <select name="add-task-list" id="add-task-list">
-                        <option value="1">🎱</option>
+                <button class="task-add ">ADD A NEW TASK</button>
+
+
+                <form id="form-new-task" class="form-new-task hidden">
+                    <div class="set-new-task">
+                        <input type="text" name="add-task-name" id="add-task-name" placeholder="New Task" required />
+                        <hr />
+                        <textarea id="add-task-comment" name="story" placeholder="Describe your task"></textarea>
+                        <!-- <div class="add-task-emoji">
+                            <input type="radio" id="radio1" name="add-task-emoji" value="😊" checked />
+                            <label for="radio1">😊</label>
+                            <input type="radio" id="radio2" name="add-task-emoji" value="😅" />
+                            <label for="radio2">😅</label>
+                            <input type="radio" id="radio3" name="add-task-emoji" value="🫠" />
+                            <label for="radio3">🫠</label>
+                        </div> -->
+                        <select name="emoji-bar" id="add-task-emoji" multiple>
+                            <option value="green" selected="selected">😊</option>
+                            <option value="orange">😅</option>
+                            <option value="red">🥵</option>
+                        </select>
+                        <input type="text" name="add-task-date" id="add-task-date" placeholder="SET A DATE" />
+                        <input type="text" name="add-task-place" id="add-task-place" placeholder="SET A PLACE" />
+                    </div>
+                    <!-- <div class="add-task-list">
+                        <input type="radio" id="radio-list1" name="add-task-list" value="🎱" checked />
+                        <label for="radio-list1">🎱</label>
+                        <input type="radio" id="radio-list2" name="add-task-list" value="🧠" />
+                        <label for="radio-list2">🧠</label>
+                        <input type="radio" id="radio-list3" name="add-task-list" value="⚽" />
+                        <label for="radio-list3">⚽</label>
+                        <input type="radio" id="radio-list4" name="add-task-list" value="🥪" />
+                        <label for="radio-list4">🥪</label>
+                        <input type="radio" id="radio-list5" name="add-task-list" value="✈️" />
+                        <label for="radio-list5">✈️</label>
+                    </div> -->
+                    <select name="add-task-list" id="add-task-list" multiple>
+                        <option value="1" selected="selected">🎱</option>
                         <option value="2">🧠</option>
                         <option value="3">⚽</option>
                         <option value="4">🥪</option>
                         <option value="5">✈️</option>
                     </select>
-                    <input type="submit" value="CONFIRM NEW TASK" id="add-task-confirm">
+                    <button id="add-task-confirm">confirm new task</button>
                 </form>
 
-            </div>
-            <section class="task-list">
-        </section>
-        <script src="js_animations.js"></script>
-        <script src="dag_module.js"></script>
-        <script src="script.js"></script>
+                <!-- <article class="task-template green">
+
+                    <div class="task-title">
+                        <h3>Plan the trip</h3>
+                    </div>
+                    <span class=task-delete>❌</span>
+                    <div class="task-emoji">😅</div>
+                    <div class="task-date green hidden">Barcelona - 13/12 to 13/01</div>
+                    <div class="task-place hidden"><a
+                            href="https://www.google.com/search?q=La Flore Bar - 21 Rue Tiquetonne" target="_blank">La
+                            Flore Bar - 21 Rue Tiquetonne</a></div>
+                    <div class="task-comment hidden">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
+                        distinctio
+                        debitis, repellendus doloribus sit nulla obcaecati sunt aliquid dolores perferendis minima
+                        eligendi
+                        culpa suscipit ad quia consequuntur nihil, placeat fugiat.
+                    </div>
+                </article> -->
+
+            </section>
+        </div>
+
+
     </main>
+    <script src="dag_module.js"></script>
+    <script type="module" src="script.js"></script>
+    <script src="js_animations.js"></script>

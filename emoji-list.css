@@ -1,0 +1,54 @@
+.emoji-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+  }
+
+    .emoji-modal button {
+          background-color: white;
+          border: 1px solid black;
+          border-radius: 30px;
+
+          color: white;
+          cursor: pointer;
+          display: inline-block;
+          font-weight: 600;
+          font-size: 18px;
+          padding: 0 18px;
+          line-height: 50px;
+          text-align: center;
+          text-decoration: none;
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+          transition: transform 0.3s ease-in-out;
+        }
+        
+        .emoji-modal button:hover {
+          background-color: #fff;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+          transform: scale(1.1);
+          border-color: white;
+        }
+        
+        .emoji-modal button:active {
+          box-shadow: black 2px 2px 0 0;
+          transform: translate(2px, 2px);
+        }
+        
+        @media (min-width: 768px) {
+          .button-74 {
+            min-width: 120px;
+            padding: 0 25px;
+          }
+        }
+
+    

@@ -1,8 +1,69 @@
-let buttonAddTask = document.querySelector(".task-add");
+let buttonAddTask = document.getElementById("add-task-confirm");
 let sectionToAdd = document.querySelector("section.task-list");
+
+let addTaskButton = document.querySelector(".task-add");
+let addTaskContainer = document.querySelector("#form-new-task");
+
+addTaskButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  toggleVisibility();
+});
+
+function toggleVisibility() {
+  addTaskButton.classList.toggle("hidden");
+  addTaskContainer.classList.toggle("hidden");
+}
 
 let toDoList = [];
 let doneList = [];
+
+function createCategory(emoji) {
+  
+  const listTaskContainer = document.querySelector(".list-task");
+
+  const newCategoryButton = document.createElement("button");
+  newCategoryButton.dataset.type = listTaskContainer.children.length + 1;
+  newCategoryButton.innerText = emoji;
+
+  newCategoryButton.addEventListener("click", function () {
+    updateCategoryOptions(); 
+  });
+
+  listTaskContainer.appendChild(newCategoryButton);
+  updateCategoryOptions(); 
+}
+
+function updateCategoryOptions() {
+  const addTaskListSelect = document.getElementById("add-task-list");
+  const listTaskContainer = document.querySelector(".list-task");
+  addTaskListSelect.innerHTML = "";
+  listTaskContainer.querySelectorAll("button").forEach(function (categoryButton) {
+    const option = document.createElement("option");
+    option.value = categoryButton.dataset.type;
+    option.innerText = categoryButton.innerText;
+    addTaskListSelect.appendChild(option);
+  });
+}
+
+const addListButton = document.getElementById("addListButton");
+const emojiModal = document.getElementById("emojiModal");
+
+addListButton.addEventListener("click", function () {
+  emojiModal.style.display = "block";
+});
+
+emojiModal.addEventListener("click", function (event) {
+  if (event.target.tagName === "BUTTON") {
+    createCategory(event.target.innerText);
+    emojiModal.style.display = "none";
+  }
+});
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    emojiModal.style.display = "none";
+  }
+});
 
 function createArticle() {
   const taskToAdd = getInput();
@@ -18,6 +79,7 @@ function createArticle() {
   } else {
     newItemArticle.classList.add("red");
   }
+
 
   newItemArticle.addEventListener("click", function () {
     onDeleteAnimation(newItemArticle);
@@ -79,15 +141,20 @@ function createArticle() {
 
   sectionToAdd.appendChild(newItemArticle);
 }
-
-buttonAddTask.addEventListener("click", createArticle);
 DragAndDropModule.init();
+
+buttonAddTask.addEventListener("click", function (event) {
+  event.preventDefault();
+  createArticle();
+  toggleVisibility()
+});
 
 function sendToDone(nameOfTask) {
   let indexToRemove = toDoList.findIndex(function (obj) {
     return obj.name === nameOfTask;
   });
   if (indexToRemove !== -1) {
+    toDoList[indexToRemove].done = true;
     doneList.push(toDoList[indexToRemove]);
     toDoList.splice(indexToRemove, 1);
     console.log(toDoList);

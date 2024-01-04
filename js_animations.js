@@ -1,4 +1,3 @@
-// Function to apply the drop animation
 function onDropAnimation(element) {
     element.animate([
         {
@@ -6,12 +5,12 @@ function onDropAnimation(element) {
             opacity: 1
         },
         {
-            transform: "scale(1)", // Change this to maintain the original size
-            opacity: 0.5 // Adjust this value as needed
+            transform: "scale(1)",
+            opacity: 0.5
         },
         {
-            transform: "scale(1)", // Change this to maintain the original size
-            opacity: 1 // Adjust this value as needed
+            transform: "scale(1)",
+            opacity: 1
         }
     ], {
         duration: 500,
