@@ -53,6 +53,7 @@ body {
         color: var(--text-color-primary);
         border: 1px solid #000;
         border-radius: 2rem;
+        text-transform: uppercase;
     }
 
     .actual-page button.past-task.active {
@@ -111,6 +112,7 @@ body {
         background-color: var(--bg-color-secondary);
         border-radius: 2rem;
         color: var(--text-color-secondary);
+        text-transform: uppercase;
     }
 
     .list-add-button {
@@ -155,6 +157,7 @@ body {
         border-radius: 2em;
         text-align: center;
         color: var(--text-color-secondary);
+        text-transform: uppercase;
     }
 
 
@@ -176,6 +179,7 @@ body {
         background-color: var(--bg-color-secondary);
         border-radius: 2rem;
         color: var(--text-color-secondary);
+        text-transform: uppercase;
     }
 
     .set-new-task {
@@ -288,6 +292,7 @@ body {
 
         &::placeholder {
             color: var(--text-color-secondary);
+            text-transform: uppercase;
         }
     }
 
@@ -304,6 +309,7 @@ body {
 
         &::placeholder {
             color: var(--text-color-secondary);
+            text-transform: uppercase;
         }
     }
 
@@ -336,6 +342,7 @@ body {
         background-color: var(--bg-color-secondary);
         color: var(--text-color-secondary);
         border-radius: 2rem;
+        text-transform: uppercase;
     }
 
     /* -------------------------------------------------- */
