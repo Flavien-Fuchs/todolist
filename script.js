@@ -2,6 +2,8 @@ let buttonAddTask = document.querySelector("#add-task-confirm");
 let addTaskButton = document.querySelector(".task-add");
 let addTaskContainer = document.querySelector("#form-new-task");
 let sectionToAdd = document.querySelector("section.task-list");
+let pastSectionToAdd = document.querySelector("section.task-list.done")
+pastSectionToAdd.style.display = "none";
 
 let toDoList = [];
 let doneList = [];
@@ -29,7 +31,6 @@ function createArticle(event) {
   }
 
 
-
   const newTitleDiv = document.createElement("div");
   newTitleDiv.classList.add("task-title");
   newItemArticle.appendChild(newTitleDiv);
@@ -42,14 +43,6 @@ function createArticle(event) {
   newDeleteSpan.classList.add("task-delete");
   newDeleteSpan.innerText = "❌";
   newItemArticle.appendChild(newDeleteSpan);
-
-  newDeleteSpan.addEventListener("click", function () {
-    onDeleteAnimation(newItemArticle);
-    setTimeout(function () {
-      newItemArticle.remove();
-      sendToDone(newTitle.innerText);
-    }, 500);
-  });
 
   const emojiDiv = document.createElement("div");
   emojiDiv.classList.add("task-emoji");
@@ -91,10 +84,33 @@ function createArticle(event) {
   } else {
     newComment.classList.add("hidden");
   }
-  newItemArticle.appendChild(newComment);
-
   addTaskButton.classList.toggle("hidden");
   addTaskContainer.classList.toggle("hidden");
+
+  /*   const newCategory = document.createElement("div");
+    newCategory.innerText = taskToAdd.category;
+    newItemArticle.appendChild(newCategory); */
+
+  newItemArticle.appendChild(newComment);
+
+  /*  newDeleteSpan.addEventListener("click", function () {
+     onDeleteAnimation(newItemArticle);
+     setTimeout(function () {
+       newItemArticle.remove();
+       sendToDone(newTitle.innerText);
+     }, 500);
+   }); */
+
+  newDeleteSpan.addEventListener("click", function () {
+    onDeleteAnimation(newItemArticle);
+    setTimeout(function () {
+      pastSectionToAdd.appendChild(newItemArticle)
+      if (pastSectionToAdd.style.display === "grid") {
+        sectionToAdd.appendChild(newItemArticle)
+      }
+      sendToDone(newTitle.innerText);
+    }, 500);
+  });
 
   if (sectionToAdd.hasChildNodes) {
     const first = sectionToAdd.children[0];
@@ -102,8 +118,6 @@ function createArticle(event) {
     DragAndDropModule.init();
     return;
   }
-
-
 
   sectionToAdd.appendChild(newItemArticle);
 }
@@ -116,6 +130,7 @@ function sendToDone(nameOfTask) {
     return obj.name === nameOfTask;
   });
   if (indexToRemove !== -1) {
+    toDoList[indexToRemove].done = true;
     doneList.push(toDoList[indexToRemove]);
     toDoList.splice(indexToRemove, 1);
     console.log(toDoList);
@@ -185,7 +200,7 @@ function getInput() {
   console.log(taskToAdd.priority);
 
   let categorySelector = document.getElementById("add-task-list");
-  taskToAdd.category = categorySelector.value;
+  taskToAdd.category = categorySelector.options[categorySelector.selectedIndex].innerText;
   document.getElementById("form-new-task").reset();
 
   return taskToAdd;
@@ -196,30 +211,23 @@ listbutton.addEventListener("click", (event) => {
   const button = event.target;
 
   if (button.tagName === "BUTTON") {
-    /* const tasklist = button.dataset.type; */
 
-    // Vérifie si le bouton est déjà actif
     const isActive = button.classList.contains("active");
 
-    // Si le bouton est actif, retire la classe "active" et filtre par les types restants
     if (isActive) {
       button.classList.remove("active");
     } else {
-      // Si le bouton n'est pas actif, ajoute la classe "active" et filtre par les types existants
       button.classList.add("active");
     }
 
-    // Récupère tous les boutons actifs
     const activeButtons = document.querySelectorAll(".list-task button.active");
 
-    // Si aucun bouton n'est actif, affiche tous les éléments
     if (activeButtons.length === 0) {
       const articles = document.querySelectorAll(".task-template");
       articles.forEach((article) => {
         article.style.display = "flex";
       });
     } else {
-      // Si des boutons sont actifs, filtre par les types des boutons actifs
       const selectedTypes = Array.from(activeButtons).map(
         (activeButton) => activeButton.dataset.type
       );
@@ -240,18 +248,30 @@ function filterByType(selectedTypes) {
   });
 }
 
-// function showPastTasks() {
-//     // Efface le contenu actuel de la section "doToday"
-//     const doTodaySection = document.querySelector(".doToday");
-//     const isActive = pastTaskButton.classList.contains("active");
-//     if (!isActive){
-//         pastTaskButton.classList.add("active");
-//         doTodaySection.innerHTML = "";
-//     } else {
-//         pastTaskButton.classList.remove("active");
-//     }
 
-// }
+function showPastTasks() {
+  const isActive = pastTaskButton.classList.contains("active");
+  const doTodaySection = document.querySelector('#title-list')
+  doTodaySection.innerText = "Tasks already dones";
 
-// const pastTaskButton = document.querySelector(".actual-page button.past-task")
-// pastTaskButton.addEventListener("click", showPastTasks)
+  if (!isActive) {
+    pastTaskButton.classList.add("active");
+    currentButton.classList.remove("active")
+    pastSectionToAdd.style.display = "grid"
+    sectionToAdd.style.display = "none"
+  }
+}
+
+function showCurrentTasks() {
+  pastTaskButton.classList.remove("active");
+  currentButton.classList.add("active");
+  pastSectionToAdd.style.display = "none"
+  sectionToAdd.style.display = "grid"
+  const doTodaySection = document.querySelector('#title-list')
+  doTodaySection.innerText = "What to do today?";
+}
+
+const pastTaskButton = document.querySelector(".actual-page button.past-task")
+const currentButton = document.querySelector(".actual-page button.current")
+pastTaskButton.addEventListener("click", showPastTasks)
+currentButton.addEventListener("click", showCurrentTasks)

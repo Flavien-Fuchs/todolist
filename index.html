@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -18,64 +17,57 @@
         </div>
         <div class="actual-page">
             <button class="button-nav past-task">past tasks</button>
-            <button class="button-nav current">current tasks</button>
-            <button class="button-nav">profile</button>
+            <button class="button-nav current active">current tasks</button>
+            <!-- <button class="button-nav">profile</button> -->
         </div>
     </header>
 
+    <h2>Task lists</h2>
     <section class="list">
-        <h2>Task lists</h2>
         <div class="list-task">
-            <button data-type="billard" id="btn-billard">🎱</button>
-            <button data-type="learn" id="btn-learn">🧠</button>
-            <button data-type="sport" id="btn-sport">⚽</button>
-            <button data-type="food" id="btn-food">🥪</button>
-            <button data-type="travel" id="btn-travel">✈️</button>
+            <button data-type="1" id="btn-billard" class="">🎱</button>
+            <button data-type="2" id="btn-learn" class="">🧠</button>
+            <button data-type="3" id="btn-sport" class="">⚽</button>
+            <button data-type="4" id="btn-food" class="">🥪</button>
+            <button data-type="5" id="btn-travel" class="">✈️</button>
         </div>
-        <div class="list-add-container">
-            <button class="list-add">add a new list</button>
-            <div class="list-add-button hidden">
-                <form>
-                    <input type="text" name="new-list-name" id="new-list-name" placeholder="Name your list">
-                    <button class="new-list-button">add list</button>
-                </form>
-            </div>
-        </div>
+        <button class="list-add">add a new list</button>
     </section>
+
     <main>
 
         <div class="list-container">
             <section class="doToday">
-                <h1>What to do today?</h1>
+                <h1 id="title-list">What to do today?</h1>
             </section>
-            <section class="task-list">
+            <button class="task-add">add a new task</button>
 
-                <button class="task-add ">add a new task</button>
-
-                <form id="form-new-task" class="form-new-task hidden">
-                    <div class="set-new-task">
-                        <input type="text" name="add-task-name" id="add-task-name" placeholder="New Task" required />
-                        <hr />
-                        <textarea id="add-task-comment" name="story" placeholder="Describe your task"></textarea>
-                        <select name="emoji-bar" id="add-task-emoji" multiple>
-                            <option value="green" selected="selected">😊</option>
-                            <option value="orange">😅</option>
-                            <option value="red">🥵</option>
-                        </select>
-                        <input type="text" name="add-task-date" id="add-task-date" placeholder="set a date" />
-                        <input type="text" name="add-task-place" id="add-task-place" placeholder="set a place" />
-                    </div>
-                    <select name="add-task-list" id="add-task-list" multiple>
-                        <option value="1" selected="selected">🎱</option>
-                        <option value="2">🧠</option>
-                        <option value="3">⚽</option>
-                        <option value="4">🥪</option>
-                        <option value="5">✈️</option>
+            <form id="form-new-task" class="form-new-task hidden">
+                <div class="set-new-task">
+                    <input type="text" name="add-task-name" id="add-task-name" placeholder="New Task" required />
+                    <hr />
+                    <textarea id="add-task-comment" name="story" placeholder="Describe your task"></textarea>
+                    <select name="emoji-bar" id="add-task-emoji" multiple>
+                        <option value="green" selected="selected">😊</option>
+                        <option value="orange">😅</option>
+                        <option value="red">🥵</option>
                     </select>
-                    <button id="add-task-confirm">confirm new task</button>
-                </form>
+                    <input type="text" name="add-task-date" id="add-task-date" placeholder="set a date" />
+                    <input type="text" name="add-task-place" id="add-task-place" placeholder="set a place" />
+                </div>
+                <select name="add-task-list" id="add-task-list" multiple>
+                    <option value="1" selected="selected">🎱</option>
+                    <option value="2">🧠</option>
+                    <option value="3">⚽</option>
+                    <option value="4">🥪</option>
+                    <option value="5">✈️</option>
+                </select>
+                <button id="add-task-confirm">confirm new task</button>
+            </form>
 
-            </section>
+            <section class="task-list"></section>
+            <section class="task-list done"></section>
+
         </div>
     </main>
 
