@@ -22,7 +22,7 @@ body {
 }
 
 
-@media screen and (max-width: 810px) {
+@media screen and (max-width: 949px) {
 
     /* -------------------------------------------------- */
     /* Style du header */
@@ -442,9 +442,17 @@ body {
         box-shadow: 0px 6px 0px -2px #F87060;
     }
 
+    article {
+        transition: box-shadow 0.3s ease-in-out;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    article:hover {
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+
 }
 
-/* Choix emoji */
 .emoji-modal {
     display: none;
     position: fixed;

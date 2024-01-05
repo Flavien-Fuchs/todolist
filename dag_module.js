@@ -1,6 +1,5 @@
 const DragAndDropModule = {
   init: function () {
-    // Select the container with the class 'task-list'
     let container = document.querySelector('.task-list');
     let articles = container.querySelectorAll('article'), currentDrag;
 

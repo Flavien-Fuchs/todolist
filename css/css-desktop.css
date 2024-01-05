@@ -22,7 +22,15 @@ body {
 }
 
 
-@media screen and (min-width: 811px) {
+
+
+@media screen and (min-width: 950px) {
+
+    body {
+
+        width: 70%;
+        margin: auto;
+    }
 
     /* -------------------------------------------------- */
     /* Style du header */
@@ -30,10 +38,16 @@ body {
     .header {
         padding: 1rem 2rem;
         display: flex;
+        justify-content: space-between;
+
     }
 
     .header h1 {
         color: #8E8E8E;
+    }
+
+    .header div:nth-child(1) {
+        margin-left: .8rem;
     }
 
     .header h1:nth-child(2) {
@@ -41,10 +55,10 @@ body {
     }
 
     .actual-page {
-        width: 360px;
+        width: 260px;
         display: flex;
         justify-content: space-between;
-        margin: 1rem 4rem;
+        margin: 1rem 1rem;
     }
 
     .actual-page .button-nav {
@@ -90,12 +104,14 @@ body {
 
     .list h2 {
         width: 100%;
+        margin: 0 0 1rem .8rem;
     }
 
 
 
     .list-task {
         height: 62px;
+        min-width: 160px;
         width: calc(100% - 400px);
         display: flex;
         align-items: center;
@@ -354,18 +370,15 @@ body {
     /* Scrollbar creation de tache */
     /* -------------------------------------------------- */
 
-    /* width */
     ::-webkit-scrollbar {
         width: 10px;
     }
 
-    /* Track */
     ::-webkit-scrollbar-track {
 
         border-radius: 5px;
     }
 
-    /* Handle */
     ::-webkit-scrollbar-thumb {
         background-color: #d6dee1;
         border-radius: 20px;
@@ -384,7 +397,7 @@ body {
     main {
         width: 100%;
         margin-top: 2rem;
-        padding: 0 2%;
+        padding: 0 4%;
     }
 
     .doToday {
@@ -416,6 +429,7 @@ body {
         display: flex;
         flex-direction: column;
         padding: 1rem 0;
+        margin: .6rem 0;
         background-color: var(--bg-color-primary);
         border: 1px black solid;
         border-radius: 2rem;
@@ -495,16 +509,26 @@ body {
         box-shadow: 0px 6px 0px -2px #F87060;
     }
 
+    article {
+        transition: box-shadow 0.3s ease-in-out;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    article:hover {
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+
 }
 
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1500px) {
     .task-list {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-@media screen and (min-width: 1600px) {
+@media screen and (min-width: 2000px) {
     .task-list {
         grid-template-columns: repeat(4, 1fr);
     }

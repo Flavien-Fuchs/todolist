@@ -139,7 +139,7 @@ function createArticle() {
 
 
   newDeleteSpan.addEventListener("click", function () {
-    onDeleteAnimation(newItemArticle);
+    /* onDeleteAnimation(newItemArticle); */
     setTimeout(function () {
       pastSectionToAdd.appendChild(newItemArticle)
       if (pastSectionToAdd.style.display === "grid") {
@@ -163,7 +163,8 @@ DragAndDropModule.init();
 buttonAddTask.addEventListener("click", function (event) {
   event.preventDefault();
   createArticle();
-  toggleVisibility()
+  toggleVisibility();
+  document.querySelector(".form-new-task").reset();
 });
 
 function sendToDone(nameOfTask) {
@@ -174,8 +175,6 @@ function sendToDone(nameOfTask) {
     toDoList[indexToRemove].done = true;
     doneList.push(toDoList[indexToRemove]);
     toDoList.splice(indexToRemove, 1);
-    console.log(toDoList);
-    console.log(doneList);
   }
 }
 
@@ -219,7 +218,6 @@ function getInput() {
   }
 
   let emojiSelector = document.getElementById("add-task-emoji");
-  console.log(emojiSelector.value);
   switch (emojiSelector.value) {
     case "green": {
       taskToAdd.priority = "😊";
@@ -238,12 +236,8 @@ function getInput() {
     }
   }
 
-  console.log(taskToAdd.priority);
-
   let categorySelector = document.getElementById("add-task-list");
   taskToAdd.category = categorySelector.value;
-  /* document.getElementsByClassName("form-new-task").reset(); */
-
 
   return taskToAdd;
 }
@@ -281,7 +275,7 @@ listbutton.addEventListener("click", (event) => {
 function filterByType(selectedTypes) {
   const articles = document.querySelectorAll(".task-template");
   articles.forEach((article) => {
-    const articleType = article.classList[1]; // La classe correspond au type de la tâche
+    const articleType = article.classList[1];
     if (selectedTypes.includes(articleType)) {
       article.style.display = "flex";
     } else {
